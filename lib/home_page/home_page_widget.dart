@@ -432,10 +432,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           0.0, 5.0, 0.0, 5.0),
                                       child: FlutterFlowChoiceChips(
                                         options: [
-                                          ChipData('Nike'),
-                                          ChipData('Adidas'),
-                                          ChipData('Converense'),
-                                          ChipData('Vans')
+                                          ChipData('All'),
+                                          ChipData('ms'),
+                                          ChipData('miss'),
+                                          ChipData('mr'),
+                                          ChipData('mrs')
                                         ],
                                         onChanged: (val) => setState(() =>
                                             _model.choiceChipsValue =
@@ -478,7 +479,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         controller: _model
                                                 .choiceChipsController ??=
                                             FormFieldController<List<String>>(
-                                          ['Nike'],
+                                          ['All'],
                                         ),
                                       ).animateOnPageLoad(animationsMap[
                                           'choiceChipsOnPageLoadAnimation']!),
@@ -513,18 +514,20 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             final productGetUsersResponse = snapshot.data!;
                             return Builder(
                               builder: (context) {
-                                final usersBodyListRow =
-                                    productGetUsersResponse.jsonBody.toList();
+                                final usersRow = DummyapiGroup.getUsersCall
+                                        .datas(
+                                          productGetUsersResponse.jsonBody,
+                                        )
+                                        ?.toList() ??
+                                    [];
                                 return SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    children:
-                                        List.generate(usersBodyListRow.length,
-                                            (usersBodyListRowIndex) {
-                                      final usersBodyListRowItem =
-                                          usersBodyListRow[
-                                              usersBodyListRowIndex];
+                                    children: List.generate(usersRow.length,
+                                        (usersRowIndex) {
+                                      final usersRowItem =
+                                          usersRow[usersRowIndex];
                                       return Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
@@ -573,25 +576,23 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [],
-                                                  ),
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 14.0,
-                                                                0.0, 0.0),
+                                                                0.0, 14.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
                                                         Expanded(
                                                           child: Image.network(
-                                                            '',
+                                                            DummyapiGroup
+                                                                .getUsersCall
+                                                                .pictures(
+                                                              productGetUsersResponse
+                                                                  .jsonBody,
+                                                            )[usersRowIndex],
                                                             width: 100.0,
                                                             height: 135.0,
                                                             fit: BoxFit.cover,
@@ -607,47 +608,25 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        5.0,
-                                                                        0.0,
-                                                                        5.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'Nike air rapor',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Open Sans',
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        14.0,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(5.0, 5.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Text(
-                                                          '\$ 345',
+                                                          (DummyapiGroup
+                                                                  .getUsersCall
+                                                                  .titles(
+                                                            productGetUsersResponse
+                                                                .jsonBody,
+                                                          ) as List)
+                                                              .map<String>((s) =>
+                                                                  s.toString())
+                                                              .toList()[
+                                                                  usersRowIndex]
+                                                              .toString()
+                                                              .maybeHandleOverflow(
+                                                                  maxChars: 20),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -656,7 +635,69 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     'Open Sans',
                                                                 color: Colors
                                                                     .white,
-                                                                fontSize: 16.0,
+                                                                fontSize: 14.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          ' ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                        Text(
+                                                          (DummyapiGroup
+                                                                  .getUsersCall
+                                                                  .lastNames(
+                                                            productGetUsersResponse
+                                                                .jsonBody,
+                                                          ) as List)
+                                                              .map<String>((s) =>
+                                                                  s.toString())
+                                                              .toList()[
+                                                                  usersRowIndex]
+                                                              .toString()
+                                                              .maybeHandleOverflow(
+                                                                  maxChars: 20),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 14.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          ' ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                        Text(
+                                                          (DummyapiGroup
+                                                                  .getUsersCall
+                                                                  .firstNames(
+                                                            productGetUsersResponse
+                                                                .jsonBody,
+                                                          ) as List)
+                                                              .map<String>((s) =>
+                                                                  s.toString())
+                                                              .toList()[
+                                                                  usersRowIndex]
+                                                              .toString()
+                                                              .maybeHandleOverflow(
+                                                                  maxChars: 20),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 14.0,
                                                               ),
                                                         ),
                                                       ],
@@ -720,228 +761,337 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               );
                             }
                             final columnGetUsersResponse = snapshot.data!;
-                            return SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
+                            return Builder(
+                              builder: (context) {
+                                final usersColumn = DummyapiGroup.getUsersCall
+                                        .datas(
+                                          columnGetUsersResponse.jsonBody,
+                                        )
+                                        ?.toList() ??
+                                    [];
+                                return SingleChildScrollView(
+                                  child: Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 0.0),
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 0.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(0.0),
-                                                bottomRight:
-                                                    Radius.circular(30.0),
-                                                topLeft: Radius.circular(30.0),
-                                                topRight: Radius.circular(0.0),
-                                              ),
-                                            ),
-                                            child: Container(
-                                              width: 100.0,
-                                              height: 100.0,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xFF6E61FA),
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(30.0),
-                                                  topLeft:
-                                                      Radius.circular(30.0),
-                                                  topRight:
-                                                      Radius.circular(0.0),
+                                    children: List.generate(usersColumn.length,
+                                        (usersColumnIndex) {
+                                      final usersColumnItem =
+                                          usersColumn[usersColumnIndex];
+                                      return Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 0.0, 0.0),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 0.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(0.0),
+                                                    bottomRight:
+                                                        Radius.circular(30.0),
+                                                    topLeft:
+                                                        Radius.circular(30.0),
+                                                    topRight:
+                                                        Radius.circular(0.0),
+                                                  ),
                                                 ),
-                                                border: Border.all(
-                                                  color: Colors.transparent,
-                                                  width: 0.0,
-                                                ),
-                                              ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
-                                                    child: Material(
+                                                child: Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF6E61FA),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(0.0),
+                                                      bottomRight:
+                                                          Radius.circular(30.0),
+                                                      topLeft:
+                                                          Radius.circular(30.0),
+                                                      topRight:
+                                                          Radius.circular(0.0),
+                                                    ),
+                                                    border: Border.all(
                                                       color: Colors.transparent,
-                                                      elevation: 2.0,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    100.0),
-                                                      ),
-                                                      child: Container(
-                                                        width: 80.0,
-                                                        height: 80.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          gradient:
-                                                              LinearGradient(
-                                                            colors: [
-                                                              Color(0xFF7D71F8),
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary
-                                                            ],
-                                                            stops: [0.0, 1.0],
-                                                            begin:
-                                                                AlignmentDirectional(
-                                                                    0.0, -1.0),
-                                                            end:
-                                                                AlignmentDirectional(
-                                                                    0, 1.0),
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      100.0),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      10.0,
-                                                                      10.0,
-                                                                      10.0),
-                                                          child: ClipRRect(
+                                                      width: 0.0,
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: Material(
+                                                          color: Colors
+                                                              .transparent,
+                                                          elevation: 2.0,
+                                                          shape:
+                                                              RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        10.0),
-                                                            child:
-                                                                Image.network(
-                                                              '',
-                                                              width: 100.0,
-                                                              height: 70.0,
-                                                              fit: BoxFit.cover,
+                                                                        100.0),
+                                                          ),
+                                                          child: Container(
+                                                            width: 80.0,
+                                                            height: 80.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              gradient:
+                                                                  LinearGradient(
+                                                                colors: [
+                                                                  Color(
+                                                                      0xFF7D71F8),
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary
+                                                                ],
+                                                                stops: [
+                                                                  0.0,
+                                                                  1.0
+                                                                ],
+                                                                begin:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        -1.0),
+                                                                end:
+                                                                    AlignmentDirectional(
+                                                                        0, 1.0),
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          100.0),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10.0),
+                                                                child: Image
+                                                                    .network(
+                                                                  DummyapiGroup
+                                                                      .getUsersCall
+                                                                      .pictures(
+                                                                    columnGetUsersResponse
+                                                                        .jsonBody,
+                                                                  )[usersColumnIndex],
+                                                                  width: 100.0,
+                                                                  height: 70.0,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Row(
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0),
+                                                          child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
-                                                              Expanded(
-                                                                child: Text(
-                                                                  'Hello World',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Open Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBtnText,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    '\$ 340',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Open Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBtnText,
-                                                                          fontSize:
-                                                                              16.0,
-                                                                        ),
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      (DummyapiGroup
+                                                                              .getUsersCall
+                                                                              .titles(
+                                                                        columnGetUsersResponse
+                                                                            .jsonBody,
+                                                                      ) as List)
+                                                                          .map<String>((s) => s
+                                                                              .toString())
+                                                                          .toList()[
+                                                                              usersColumnIndex]
+                                                                          .toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBtnText,
+                                                                            fontSize:
+                                                                                14.0,
+                                                                          ),
+                                                                    ),
                                                                   ),
-                                                                ),
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      (DummyapiGroup
+                                                                              .getUsersCall
+                                                                              .firstNames(
+                                                                        columnGetUsersResponse
+                                                                            .jsonBody,
+                                                                      ) as List)
+                                                                          .map<String>((s) => s
+                                                                              .toString())
+                                                                          .toList()[
+                                                                              usersColumnIndex]
+                                                                          .toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBtnText,
+                                                                            fontSize:
+                                                                                16.0,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      ' ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBtnText,
+                                                                            fontSize:
+                                                                                16.0,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      (DummyapiGroup
+                                                                              .getUsersCall
+                                                                              .lastNames(
+                                                                        columnGetUsersResponse
+                                                                            .jsonBody,
+                                                                      ) as List)
+                                                                          .map<String>((s) => s
+                                                                              .toString())
+                                                                          .toList()[
+                                                                              usersColumnIndex]
+                                                                          .toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBtnText,
+                                                                            fontSize:
+                                                                                16.0,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ],
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                10.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .keyboard_arrow_right,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBtnText,
-                                                          size: 19.0,
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_right,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBtnText,
+                                                              size: 19.0,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
-                                  ).animateOnPageLoad(animationsMap[
-                                      'rowOnPageLoadAnimation3']!),
-                                ],
-                              ),
+                                        ],
+                                      ).animateOnPageLoad(animationsMap[
+                                          'rowOnPageLoadAnimation3']!);
+                                    }),
+                                  ),
+                                );
+                              },
                             );
                           },
                         ),
