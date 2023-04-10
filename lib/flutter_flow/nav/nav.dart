@@ -52,8 +52,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'ITEM_INFO',
               path: 'itemInfo',
               builder: (context, params) => ItemInfoWidget(
-                productref: params.getParam('productref',
-                    ParamType.DocumentReference, false, ['product']),
+                userId: params.getParam('userId', ParamType.String),
               ),
             ),
             FFRoute(

@@ -1,12 +1,10 @@
-import '/backend/backend.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -19,10 +17,10 @@ export 'item_info_model.dart';
 class ItemInfoWidget extends StatefulWidget {
   const ItemInfoWidget({
     Key? key,
-    this.productref,
+    this.userId,
   }) : super(key: key);
 
-  final DocumentReference? productref;
+  final String? userId;
 
   @override
   _ItemInfoWidgetState createState() => _ItemInfoWidgetState();
@@ -60,18 +58,6 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
         ),
       ],
     ),
-    'toggleIconOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1090.ms,
-          begin: Offset(39.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -97,6 +83,78 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
       ],
     ),
     'textOnPageLoadAnimation4': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation5': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation7': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation8': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation9': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation10': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
@@ -224,8 +282,10 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return StreamBuilder<ProductRecord>(
-      stream: ProductRecord.getDocument(widget.productref!),
+    return FutureBuilder<ApiCallResponse>(
+      future: DummyapiGroup.getUserProfileCall.call(
+        userId: widget.userId,
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -240,7 +300,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
             ),
           );
         }
-        final itemInfoProductRecord = snapshot.data!;
+        final itemInfoGetUserProfileResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Scaffold(
@@ -283,7 +343,9 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                             children: [
                               Expanded(
                                 child: Image.network(
-                                  itemInfoProductRecord.image!,
+                                  DummyapiGroup.getUserProfileCall.picture(
+                                    itemInfoGetUserProfileResponse.jsonBody,
+                                  ),
                                   width: 100.0,
                                   height: 300.0,
                                   fit: BoxFit.cover,
@@ -298,69 +360,108 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Expanded(
-                                  child: Text(
-                                    itemInfoProductRecord.name!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation1']!),
-                                ),
-                                InkWell(
-                                  onTap: () async {
-                                    FFAppState().update(() {
-                                      FFAppState().addToFavorite(
-                                          itemInfoProductRecord.reference);
-                                    });
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 5.0, 0.0),
-                                        child: ToggleIcon(
-                                          onPressed: () async {
-                                            setState(
-                                              () => FFAppState()
-                                                      .favorite
-                                                      .contains(
-                                                          itemInfoProductRecord
-                                                              .reference)
-                                                  ? FFAppState()
-                                                      .removeFromFavorite(
-                                                          itemInfoProductRecord
-                                                              .reference)
-                                                  : FFAppState().addToFavorite(
-                                                      itemInfoProductRecord
-                                                          .reference),
-                                            );
-                                          },
-                                          value: FFAppState().favorite.contains(
-                                              itemInfoProductRecord.reference),
-                                          onIcon: Icon(
-                                            Icons.favorite,
-                                            color: FlutterFlowTheme.of(context)
-                                                .lineColor,
-                                            size: 30.0,
-                                          ),
-                                          offIcon: Icon(
-                                            Icons.favorite_border,
-                                            color: FlutterFlowTheme.of(context)
-                                                .lineColor,
-                                            size: 30.0,
-                                          ),
-                                        ).animateOnPageLoad(animationsMap[
-                                            'toggleIconOnPageLoadAnimation']!),
+                                Text(
+                                  DummyapiGroup.getUserProfileCall
+                                      .title(
+                                        itemInfoGetUserProfileResponse.jsonBody,
+                                      )
+                                      .toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation1']!),
+                                Text(
+                                  ' ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation2']!),
+                                Text(
+                                  DummyapiGroup.getUserProfileCall
+                                      .firstName(
+                                        itemInfoGetUserProfileResponse.jsonBody,
+                                      )
+                                      .toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation3']!),
+                                Text(
+                                  ' ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation4']!),
+                                Text(
+                                  DummyapiGroup.getUserProfileCall
+                                      .lastName(
+                                        itemInfoGetUserProfileResponse.jsonBody,
+                                      )
+                                      .toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation5']!),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                10.0, 10.0, 10.0, 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  DummyapiGroup.getUserProfileCall
+                                      .email(
+                                        itemInfoGetUserProfileResponse.jsonBody,
+                                      )
+                                      .toString(),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation6']!),
+                                Text(
+                                  ', ',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation7']!),
+                                Text(
+                                  DummyapiGroup.getUserProfileCall
+                                      .phone(
+                                        itemInfoGetUserProfileResponse.jsonBody,
+                                      )
+                                      .toString(),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation8']!),
                               ],
                             ),
                           ),
@@ -372,24 +473,12 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                               children: [
                                 Expanded(
                                   child: Text(
-                                    itemInfoProductRecord.info!,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation2']!),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 10.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    'Size',
+                                    DummyapiGroup.getUserProfileCall
+                                        .dateOfBirth(
+                                          itemInfoGetUserProfileResponse
+                                              .jsonBody,
+                                        )
+                                        .toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -398,7 +487,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation3']!),
+                                      'textOnPageLoadAnimation9']!),
                                 ),
                               ],
                             ),
@@ -477,7 +566,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation4']!),
+                                      'textOnPageLoadAnimation10']!),
                                 ),
                               ],
                             ),
@@ -689,7 +778,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Text(
-                                              '\$ ${itemInfoProductRecord.price?.toString()}',
+                                              '\$ 235',
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -714,128 +803,67 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
-                                              InkWell(
-                                                onTap: () async {
-                                                  FFAppState().update(() {
-                                                    FFAppState().addToCart(
-                                                        itemInfoProductRecord
-                                                            .reference);
-                                                    FFAppState()
-                                                        .cartsum = FFAppState()
-                                                            .cartsum +
-                                                        itemInfoProductRecord
-                                                            .price!;
-                                                  });
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Added to cart',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .titleMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Open Sans',
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                      ),
-                                                      duration: Duration(
-                                                          milliseconds: 4050),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      action: SnackBarAction(
-                                                        label: 'Go to Cart',
-                                                        textColor:
-                                                            Color(0xFFE8E8E8),
-                                                        onPressed: () async {
-                                                          context.pushNamed(
-                                                            'CARD',
-                                                            extra: <String,
-                                                                dynamic>{
-                                                              kTransitionInfoKey:
-                                                                  TransitionInfo(
-                                                                hasTransition:
-                                                                    true,
-                                                                transitionType:
-                                                                    PageTransitionType
-                                                                        .bottomToTop,
-                                                              ),
-                                                            },
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: 200.0,
-                                                  height: 100.0,
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                        Color(0xFF6758FF)
-                                                      ],
-                                                      stops: [0.0, 1.0],
-                                                      begin:
-                                                          AlignmentDirectional(
-                                                              0.64, -1.0),
-                                                      end: AlignmentDirectional(
-                                                          -0.64, 1.0),
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(0.0),
-                                                      bottomRight:
-                                                          Radius.circular(50.0),
-                                                      topLeft:
-                                                          Radius.circular(50.0),
-                                                      topRight:
-                                                          Radius.circular(0.0),
-                                                    ),
+                                              Container(
+                                                width: 200.0,
+                                                height: 100.0,
+                                                decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                      Color(0xFF6758FF)
+                                                    ],
+                                                    stops: [0.0, 1.0],
+                                                    begin: AlignmentDirectional(
+                                                        0.64, -1.0),
+                                                    end: AlignmentDirectional(
+                                                        -0.64, 1.0),
                                                   ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Text(
-                                                            'Add to cart',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                          ),
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(0.0),
+                                                    bottomRight:
+                                                        Radius.circular(50.0),
+                                                    topLeft:
+                                                        Radius.circular(50.0),
+                                                    topRight:
+                                                        Radius.circular(0.0),
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 10.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Add to cart',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
