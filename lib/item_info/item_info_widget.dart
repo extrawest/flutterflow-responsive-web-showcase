@@ -1,10 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -166,7 +165,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
         ),
       ],
     ),
-    'rowOnPageLoadAnimation2': AnimationInfo(
+    'textOnPageLoadAnimation11': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
@@ -178,72 +177,19 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
         ),
       ],
     ),
-    'containerOnActionTriggerAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
+    'textOnPageLoadAnimation12': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
-          curve: Curves.bounceOut,
+          curve: Curves.elasticOut,
           delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(0.0, 24.0),
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
           end: Offset(0.0, 0.0),
         ),
       ],
     ),
-    'containerOnActionTriggerAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        MoveEffect(
-          curve: Curves.bounceOut,
-          delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(0.0, 24.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnActionTriggerAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        MoveEffect(
-          curve: Curves.bounceOut,
-          delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(0.0, 24.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnActionTriggerAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        MoveEffect(
-          curve: Curves.bounceOut,
-          delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(0.0, 24.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnActionTriggerAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        MoveEffect(
-          curve: Curves.bounceOut,
-          delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(0.0, 24.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'rowOnPageLoadAnimation3': AnimationInfo(
+    'rowOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
@@ -261,13 +207,6 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => ItemInfoModel());
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -437,6 +376,12 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
+                                  'email: ',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation6']!),
+                                Text(
                                   DummyapiGroup.getUserProfileCall
                                       .email(
                                         itemInfoGetUserProfileResponse.jsonBody,
@@ -445,23 +390,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation6']!),
-                                Text(
-                                  ', ',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ).animateOnPageLoad(
                                     animationsMap['textOnPageLoadAnimation7']!),
-                                Text(
-                                  DummyapiGroup.getUserProfileCall
-                                      .phone(
-                                        itemInfoGetUserProfileResponse.jsonBody,
-                                      )
-                                      .toString(),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation8']!),
                               ],
                             ),
                           ),
@@ -471,14 +400,54 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Text(
+                                  'phone: ',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation8']!),
+                                Text(
+                                  DummyapiGroup.getUserProfileCall
+                                      .phone(
+                                        itemInfoGetUserProfileResponse.jsonBody,
+                                      )
+                                      .toString(),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation9']!),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                10.0, 10.0, 10.0, 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Birthday: ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'textOnPageLoadAnimation10']!),
                                 Expanded(
                                   child: Text(
-                                    DummyapiGroup.getUserProfileCall
-                                        .dateOfBirth(
-                                          itemInfoGetUserProfileResponse
-                                              .jsonBody,
-                                        )
-                                        .toString(),
+                                    valueOrDefault<String>(
+                                      functions.getBirthday(
+                                          DummyapiGroup.getUserProfileCall
+                                              .dateOfBirth(
+                                                itemInfoGetUserProfileResponse
+                                                    .jsonBody,
+                                              )
+                                              .toString()),
+                                      '0000-00-00',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -487,64 +456,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation9']!),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 10.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: FlutterFlowChoiceChips(
-                                    options: [
-                                      ChipData('16'),
-                                      ChipData('17'),
-                                      ChipData('18'),
-                                      ChipData('19'),
-                                      ChipData('20'),
-                                      ChipData('21'),
-                                      ChipData('22')
-                                    ],
-                                    onChanged: (val) => setState(() =>
-                                        _model.choiceChipsValue = val?.first),
-                                    selectedChipStyle: ChipStyle(
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: Colors.white,
-                                          ),
-                                      iconColor: Colors.white,
-                                      iconSize: 18.0,
-                                      elevation: 4.0,
-                                    ),
-                                    unselectedChipStyle: ChipStyle(
-                                      backgroundColor: Colors.white,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: Color(0xFF323B45),
-                                          ),
-                                      iconColor: Color(0xFF323B45),
-                                      iconSize: 18.0,
-                                      elevation: 4.0,
-                                    ),
-                                    chipSpacing: 10.0,
-                                    multiselect: false,
-                                    alignment: WrapAlignment.start,
-                                    controller: _model.choiceChipsController ??=
-                                        FormFieldController<List<String>>(
-                                      [],
-                                    ),
-                                  ),
+                                      'textOnPageLoadAnimation11']!),
                                 ),
                               ],
                             ),
@@ -557,7 +469,12 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'Color',
+                                    DummyapiGroup.getUserProfileCall
+                                        .location(
+                                          itemInfoGetUserProfileResponse
+                                              .jsonBody,
+                                        )
+                                        .toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -566,184 +483,10 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation10']!),
+                                      'textOnPageLoadAnimation12']!),
                                 ),
                               ],
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        FFAppState().update(() {
-                                          FFAppState().color = 'Red';
-                                        });
-                                      },
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 0.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                        ),
-                                        child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFD50000),
-                                            borderRadius:
-                                                BorderRadius.circular(100.0),
-                                          ),
-                                        ),
-                                      ),
-                                    ).animateOnActionTrigger(
-                                      animationsMap[
-                                          'containerOnActionTriggerAnimation1']!,
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          FFAppState().update(() {
-                                            FFAppState().color = 'Fiolet';
-                                          });
-                                        },
-                                        child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                            borderRadius:
-                                                BorderRadius.circular(100.0),
-                                          ),
-                                        ),
-                                      ).animateOnActionTrigger(
-                                        animationsMap[
-                                            'containerOnActionTriggerAnimation2']!,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          FFAppState().update(() {
-                                            FFAppState().color = 'Milk';
-                                          });
-                                        },
-                                        child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                            borderRadius:
-                                                BorderRadius.circular(100.0),
-                                          ),
-                                        ),
-                                      ).animateOnActionTrigger(
-                                        animationsMap[
-                                            'containerOnActionTriggerAnimation3']!,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          FFAppState().update(() {
-                                            FFAppState().color = 'Blue';
-                                          });
-                                        },
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          elevation: 0.0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(100.0),
-                                          ),
-                                          child: Container(
-                                            width: 30.0,
-                                            height: 30.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFF1D9FCB),
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
-                                              shape: BoxShape.rectangle,
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnActionTrigger(
-                                        animationsMap[
-                                            'containerOnActionTriggerAnimation4']!,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          FFAppState().update(() {
-                                            FFAppState().color = 'Yellow';
-                                          });
-                                        },
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          elevation: 0.0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(100.0),
-                                          ),
-                                          child: Container(
-                                            width: 30.0,
-                                            height: 30.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFFFF741),
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnActionTrigger(
-                                        animationsMap[
-                                            'containerOnActionTriggerAnimation5']!,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ).animateOnPageLoad(
-                                animationsMap['rowOnPageLoadAnimation2']!),
                           ),
                         ],
                       ),
@@ -877,7 +620,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                               ),
                             ],
                           ).animateOnPageLoad(
-                              animationsMap['rowOnPageLoadAnimation3']!),
+                              animationsMap['rowOnPageLoadAnimation2']!),
                         ],
                       ),
                     ),
