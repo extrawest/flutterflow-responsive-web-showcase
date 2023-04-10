@@ -34,18 +34,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1120.ms,
-          begin: Offset(-46.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'rowOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -82,7 +70,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation2': AnimationInfo(
+    'textOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
@@ -305,55 +293,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Brands',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            fontSize: 23.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation1']!),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 0.0),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        if (FFAppState().searchonof) {
-                                          FFAppState().update(() {
-                                            FFAppState().searchonof = false;
-                                          });
-                                        } else {
-                                          FFAppState().update(() {
-                                            FFAppState().searchonof = true;
-                                          });
-                                        }
-                                      },
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          FaIcon(
-                                            FontAwesomeIcons.search,
-                                            color: Color(0xFFC2C2C2),
-                                            size: 20.0,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 15.0, 10.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -531,34 +470,30 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       return Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          elevation: 0.0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(0.0),
-                                              bottomRight:
-                                                  Radius.circular(30.0),
-                                              topLeft: Radius.circular(30.0),
-                                              topRight: Radius.circular(0.0),
-                                            ),
-                                          ),
-                                          child: Container(
-                                            width: 200.0,
-                                            height: 300.0,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xFFF59292),
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary
-                                                ],
-                                                stops: [0.0, 1.0],
-                                                begin: AlignmentDirectional(
-                                                    0.34, -1.0),
-                                                end: AlignmentDirectional(
-                                                    -0.34, 1.0),
-                                              ),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'ITEM_INFO',
+                                              queryParams: {
+                                                'userId': serializeParam(
+                                                  (DummyapiGroup.getUsersCall
+                                                          .ids(
+                                                    productGetUsersResponse
+                                                        .jsonBody,
+                                                  ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()[usersRowItem]
+                                                      .toString(),
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 0.0,
+                                            shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
@@ -568,142 +503,188 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 topRight: Radius.circular(0.0),
                                               ),
                                             ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 5.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 14.0,
-                                                                0.0, 14.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Image.network(
-                                                            DummyapiGroup
-                                                                .getUsersCall
-                                                                .pictures(
+                                            child: Container(
+                                              width: 200.0,
+                                              height: 300.0,
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF59292),
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary
+                                                  ],
+                                                  stops: [0.0, 1.0],
+                                                  begin: AlignmentDirectional(
+                                                      0.34, -1.0),
+                                                  end: AlignmentDirectional(
+                                                      -0.34, 1.0),
+                                                ),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(0.0),
+                                                  bottomRight:
+                                                      Radius.circular(30.0),
+                                                  topLeft:
+                                                      Radius.circular(30.0),
+                                                  topRight:
+                                                      Radius.circular(0.0),
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 5.0, 5.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  14.0,
+                                                                  0.0,
+                                                                  14.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Expanded(
+                                                            child:
+                                                                Image.network(
+                                                              DummyapiGroup
+                                                                  .getUsersCall
+                                                                  .pictures(
+                                                                productGetUsersResponse
+                                                                    .jsonBody,
+                                                              )[usersRowIndex],
+                                                              width: 100.0,
+                                                              height: 135.0,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            (DummyapiGroup
+                                                                    .getUsersCall
+                                                                    .titles(
                                                               productGetUsersResponse
                                                                   .jsonBody,
-                                                            )[usersRowIndex],
-                                                            width: 100.0,
-                                                            height: 135.0,
-                                                            fit: BoxFit.cover,
+                                                            ) as List)
+                                                                .map<String>(
+                                                                    (s) => s
+                                                                        .toString())
+                                                                .toList()[
+                                                                    usersRowIndex]
+                                                                .toString()
+                                                                .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        20),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Text(
+                                                            ' ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                          Text(
+                                                            (DummyapiGroup
+                                                                    .getUsersCall
+                                                                    .lastNames(
+                                                              productGetUsersResponse
+                                                                  .jsonBody,
+                                                            ) as List)
+                                                                .map<String>(
+                                                                    (s) => s
+                                                                        .toString())
+                                                                .toList()[
+                                                                    usersRowIndex]
+                                                                .toString()
+                                                                .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        20),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            ' ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                          Text(
+                                                            (DummyapiGroup
+                                                                    .getUsersCall
+                                                                    .firstNames(
+                                                              productGetUsersResponse
+                                                                  .jsonBody,
+                                                            ) as List)
+                                                                .map<String>(
+                                                                    (s) => s
+                                                                        .toString())
+                                                                .toList()[
+                                                                    usersRowIndex]
+                                                                .toString()
+                                                                .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        20),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 5.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          (DummyapiGroup
-                                                                  .getUsersCall
-                                                                  .titles(
-                                                            productGetUsersResponse
-                                                                .jsonBody,
-                                                          ) as List)
-                                                              .map<String>((s) =>
-                                                                  s.toString())
-                                                              .toList()[
-                                                                  usersRowIndex]
-                                                              .toString()
-                                                              .maybeHandleOverflow(
-                                                                  maxChars: 20),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          ' ',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                        Text(
-                                                          (DummyapiGroup
-                                                                  .getUsersCall
-                                                                  .lastNames(
-                                                            productGetUsersResponse
-                                                                .jsonBody,
-                                                          ) as List)
-                                                              .map<String>((s) =>
-                                                                  s.toString())
-                                                              .toList()[
-                                                                  usersRowIndex]
-                                                              .toString()
-                                                              .maybeHandleOverflow(
-                                                                  maxChars: 20),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          ' ',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                        Text(
-                                                          (DummyapiGroup
-                                                                  .getUsersCall
-                                                                  .firstNames(
-                                                            productGetUsersResponse
-                                                                .jsonBody,
-                                                          ) as List)
-                                                              .map<String>((s) =>
-                                                                  s.toString())
-                                                              .toList()[
-                                                                  usersRowIndex]
-                                                              .toString()
-                                                              .maybeHandleOverflow(
-                                                                  maxChars: 20),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -735,7 +716,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       fontWeight: FontWeight.bold,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation2']!),
+                                  animationsMap['textOnPageLoadAnimation']!),
                             ),
                           ],
                         ),
