@@ -43,7 +43,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'homePage',
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'HomePage')
-                  : HomePageWidget(),
+                  : HomePageWidget(
+                      isUserFetching:
+                          params.getParam('isUserFetching', ParamType.bool),
+                    ),
             ),
             FFRoute(
               name: 'ITEM_INFO',

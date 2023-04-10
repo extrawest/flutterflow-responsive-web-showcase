@@ -1,11 +1,9 @@
-import '/backend/backend.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -17,7 +15,13 @@ import 'home_page_model.dart';
 export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key? key}) : super(key: key);
+  const HomePageWidget({
+    Key? key,
+    bool? isUserFetching,
+  })  : this.isUserFetching = isUserFetching ?? false,
+        super(key: key);
+
+  final bool isUserFetching;
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
@@ -78,32 +82,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
         ),
       ],
     ),
-    'toggleIconOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        RotateEffect(
-          curve: Curves.easeIn,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'iconOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        RotateEffect(
-          curve: Curves.easeOut,
-          delay: 1.ms,
-          duration: 860.ms,
-          begin: 1.0,
-          end: 0.0,
-        ),
-      ],
-    ),
     'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -160,12 +138,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
     _model = createModel(context, () => HomePageModel());
 
     _model.searchController ??= TextEditingController();
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -521,12 +493,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                        child: FutureBuilder<List<ProductRecord>>(
-                          future: queryProductRecordOnce(
-                            queryBuilder: (productRecord) =>
-                                productRecord.where('brand_name',
-                                    isEqualTo: _model.choiceChipsValue),
-                          ),
+                        child: FutureBuilder<ApiCallResponse>(
+                          future: DummyapiGroup.getUsersCall.call(),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
@@ -542,59 +510,28 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               );
                             }
-                            List<ProductRecord> productProductRecordList =
-                                snapshot.data!;
-                            return SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: List.generate(
-                                    productProductRecordList.length,
-                                    (productIndex) {
-                                  final productProductRecord =
-                                      productProductRecordList[productIndex];
-                                  return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        context.pushNamed(
-                                          'ITEM_INFO',
-                                          queryParams: {
-                                            'productref': serializeParam(
-                                              productProductRecord.reference,
-                                              ParamType.DocumentReference,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      },
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 0.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(30.0),
-                                            topLeft: Radius.circular(30.0),
-                                            topRight: Radius.circular(0.0),
-                                          ),
-                                        ),
-                                        child: Container(
-                                          width: 200.0,
-                                          height: 300.0,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0xFFF59292),
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary
-                                              ],
-                                              stops: [0.0, 1.0],
-                                              begin: AlignmentDirectional(
-                                                  0.34, -1.0),
-                                              end: AlignmentDirectional(
-                                                  -0.34, 1.0),
-                                            ),
+                            final productGetUsersResponse = snapshot.data!;
+                            return Builder(
+                              builder: (context) {
+                                final usersBodyListRow =
+                                    productGetUsersResponse.jsonBody.toList();
+                                return SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children:
+                                        List.generate(usersBodyListRow.length,
+                                            (usersBodyListRowIndex) {
+                                      final usersBodyListRowItem =
+                                          usersBodyListRow[
+                                              usersBodyListRowIndex];
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 0.0, 0.0),
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 0.0,
+                                          shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight:
@@ -603,321 +540,140 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               topRight: Radius.circular(0.0),
                                             ),
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5.0, 0.0, 5.0, 5.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                InkWell(
-                                                  onTap: () async {
-                                                    FFAppState().update(() {
-                                                      FFAppState().addToFavorite(
-                                                          productProductRecord
-                                                              .reference);
-                                                    });
-                                                  },
-                                                  child: Row(
+                                          child: Container(
+                                            width: 200.0,
+                                            height: 300.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFF59292),
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.34, -1.0),
+                                                end: AlignmentDirectional(
+                                                    -0.34, 1.0),
+                                              ),
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(0.0),
+                                                bottomRight:
+                                                    Radius.circular(30.0),
+                                                topLeft: Radius.circular(30.0),
+                                                topRight: Radius.circular(0.0),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 5.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
-                                                    children: [
-                                                      ToggleIcon(
-                                                        onPressed: () async {
-                                                          setState(
-                                                            () => FFAppState()
-                                                                    .favorite
-                                                                    .contains(
-                                                                        productProductRecord
-                                                                            .reference)
-                                                                ? FFAppState()
-                                                                    .removeFromFavorite(
-                                                                        productProductRecord
-                                                                            .reference)
-                                                                : FFAppState()
-                                                                    .addToFavorite(
-                                                                        productProductRecord
-                                                                            .reference),
-                                                          );
-                                                        },
-                                                        value: FFAppState()
-                                                            .favorite
-                                                            .contains(
-                                                                productProductRecord
-                                                                    .reference),
-                                                        onIcon: Icon(
-                                                          Icons.favorite,
-                                                          color: Colors.white,
-                                                          size: 27.0,
-                                                        ),
-                                                        offIcon: Icon(
-                                                          Icons.favorite_border,
-                                                          color: Colors.white,
-                                                          size: 27.0,
-                                                        ),
-                                                      ).animateOnActionTrigger(
-                                                        animationsMap[
-                                                            'toggleIconOnActionTriggerAnimation']!,
-                                                      ),
-                                                    ],
+                                                    children: [],
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 14.0, 0.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Image.network(
-                                                          productProductRecord
-                                                              .image!,
-                                                          width: 100.0,
-                                                          height: 135.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 5.0, 0.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      5.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            productProductRecord
-                                                                .name!
-                                                                .maybeHandleOverflow(
-                                                                    maxChars:
-                                                                        20),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 14.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Image.network(
+                                                            '',
+                                                            width: 100.0,
+                                                            height: 135.0,
+                                                            fit: BoxFit.cover,
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          5.0, 5.0, 0.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        '\$ ${productProductRecord.price?.toString()}',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Open Sans',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 16.0,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          5.0, 15.0, 0.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (!FFAppState()
-                                                          .cart
-                                                          .contains(
-                                                              productProductRecord
-                                                                  .reference))
-                                                        InkWell(
-                                                          onTap: () async {
-                                                            if (productProductRecord
-                                                                    .reference ==
-                                                                productProductRecord
-                                                                    .reference) {
-                                                              if (animationsMap[
-                                                                      'iconOnActionTriggerAnimation'] !=
-                                                                  null) {
-                                                                await animationsMap[
-                                                                        'iconOnActionTriggerAnimation']!
-                                                                    .controller
-                                                                    .forward(
-                                                                        from:
-                                                                            0.0);
-                                                              }
-                                                              FFAppState()
-                                                                  .update(() {
-                                                                FFAppState().addToCart(
-                                                                    productProductRecord
-                                                                        .reference);
-                                                                FFAppState()
-                                                                    .cartsum = FFAppState()
-                                                                        .cartsum +
-                                                                    productProductRecord
-                                                                        .price!;
-                                                              });
-                                                              ScaffoldMessenger
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 5.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        5.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Nike air rapor',
+                                                              style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Added to cart',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Open Sans',
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        14.0,
                                                                   ),
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          4050),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
-                                                                  action:
-                                                                      SnackBarAction(
-                                                                    label:
-                                                                        'Go to Cart',
-                                                                    textColor:
-                                                                        Color(
-                                                                            0xFFE8E8E8),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      context
-                                                                          .pushNamed(
-                                                                        'CARD',
-                                                                        extra: <
-                                                                            String,
-                                                                            dynamic>{
-                                                                          kTransitionInfoKey:
-                                                                              TransitionInfo(
-                                                                            hasTransition:
-                                                                                true,
-                                                                            transitionType:
-                                                                                PageTransitionType.bottomToTop,
-                                                                          ),
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                          },
-                                                          child: Icon(
-                                                            Icons.add_circle,
-                                                            color: Colors.white,
-                                                            size: 35.0,
-                                                          ),
-                                                        ).animateOnActionTrigger(
-                                                          animationsMap[
-                                                              'iconOnActionTriggerAnimation']!,
-                                                        ),
-                                                      if (FFAppState()
-                                                          .cart
-                                                          .contains(
-                                                              productProductRecord
-                                                                  .reference))
-                                                        InkWell(
-                                                          onTap: () async {
-                                                            FFAppState()
-                                                                .update(() {
-                                                              FFAppState().removeFromCart(
-                                                                  productProductRecord
-                                                                      .reference);
-                                                              FFAppState()
-                                                                  .cartsum = FFAppState()
-                                                                      .cartsum +
-                                                                  functions.returncartprice(
-                                                                      productProductRecord
-                                                                          .price!);
-                                                            });
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  'Delited in cart',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Open Sans',
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        4050),
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondary,
-                                                              ),
-                                                            );
-                                                          },
-                                                          child: Icon(
-                                                            FFIcons
-                                                                .kbasketCircled,
-                                                            color: Colors.white,
-                                                            size: 30.0,
+                                                            ),
                                                           ),
                                                         ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 5.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          '\$ 345',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 16.0,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['rowOnPageLoadAnimation2']!);
+                                      );
+                                    }),
+                                  ),
+                                ).animateOnPageLoad(
+                                    animationsMap['rowOnPageLoadAnimation2']!);
+                              },
+                            );
                           },
                         ),
                       ),
@@ -946,12 +702,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             10.0, 15.0, 20.0, 0.0),
-                        child: FutureBuilder<List<ProductRecord>>(
-                          future: queryProductRecordOnce(
-                            queryBuilder: (productRecord) =>
-                                productRecord.where('brand_name',
-                                    isEqualTo: _model.choiceChipsValue),
-                          ),
+                        child: FutureBuilder<ApiCallResponse>(
+                          future: DummyapiGroup.getUsersCall.call(),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
@@ -967,40 +719,37 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               );
                             }
-                            List<ProductRecord> columnProductRecordList =
-                                snapshot.data!;
+                            final columnGetUsersResponse = snapshot.data!;
                             return SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                children: List.generate(
-                                    columnProductRecordList.length,
-                                    (columnIndex) {
-                                  final columnProductRecord =
-                                      columnProductRecordList[columnIndex];
-                                  return InkWell(
-                                    onTap: () async {
-                                      context.pushNamed(
-                                        'ITEM_INFO',
-                                        queryParams: {
-                                          'productref': serializeParam(
-                                            columnProductRecord.reference,
-                                            ParamType.DocumentReference,
-                                          ),
-                                        }.withoutNulls,
-                                      );
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 10.0, 0.0, 0.0),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              elevation: 0.0,
-                                              shape: RoundedRectangleBorder(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 10.0, 0.0, 0.0),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 0.0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(0.0),
+                                                bottomRight:
+                                                    Radius.circular(30.0),
+                                                topLeft: Radius.circular(30.0),
+                                                topRight: Radius.circular(0.0),
+                                              ),
+                                            ),
+                                            child: Container(
+                                              width: 100.0,
+                                              height: 100.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF6E61FA),
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
@@ -1011,134 +760,137 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   topRight:
                                                       Radius.circular(0.0),
                                                 ),
-                                              ),
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFF6E61FA),
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(0.0),
-                                                    bottomRight:
-                                                        Radius.circular(30.0),
-                                                    topLeft:
-                                                        Radius.circular(30.0),
-                                                    topRight:
-                                                        Radius.circular(0.0),
-                                                  ),
-                                                  border: Border.all(
-                                                    color: Colors.transparent,
-                                                    width: 0.0,
-                                                  ),
+                                                border: Border.all(
+                                                  color: Colors.transparent,
+                                                  width: 0.0,
                                                 ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        elevation: 2.0,
-                                                        shape:
-                                                            RoundedRectangleBorder(
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Material(
+                                                      color: Colors.transparent,
+                                                      elevation: 2.0,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    100.0),
+                                                      ),
+                                                      child: Container(
+                                                        width: 80.0,
+                                                        height: 80.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              Color(0xFF7D71F8),
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary
+                                                            ],
+                                                            stops: [0.0, 1.0],
+                                                            begin:
+                                                                AlignmentDirectional(
+                                                                    0.0, -1.0),
+                                                            end:
+                                                                AlignmentDirectional(
+                                                                    0, 1.0),
+                                                          ),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       100.0),
                                                         ),
-                                                        child: Container(
-                                                          width: 80.0,
-                                                          height: 80.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            gradient:
-                                                                LinearGradient(
-                                                              colors: [
-                                                                Color(
-                                                                    0xFF7D71F8),
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary
-                                                              ],
-                                                              stops: [0.0, 1.0],
-                                                              begin:
-                                                                  AlignmentDirectional(
-                                                                      0.0,
-                                                                      -1.0),
-                                                              end:
-                                                                  AlignmentDirectional(
-                                                                      0, 1.0),
-                                                            ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      10.0,
+                                                                      10.0,
+                                                                      10.0),
+                                                          child: ClipRRect(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        100.0),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        10.0,
-                                                                        10.0,
                                                                         10.0),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                              child:
-                                                                  Image.network(
-                                                                columnProductRecord
-                                                                    .image!,
-                                                                width: 100.0,
-                                                                height: 70.0,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
+                                                            child:
+                                                                Image.network(
+                                                              '',
+                                                              width: 100.0,
+                                                              height: 70.0,
+                                                              fit: BoxFit.cover,
                                                             ),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Text(
+                                                                  'Hello World',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Open Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBtnText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                   child: Text(
-                                                                    columnProductRecord
-                                                                        .name!,
+                                                                    '\$ 340',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1148,82 +900,47 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryBtnText,
                                                                           fontSize:
-                                                                              14.0,
+                                                                              16.0,
                                                                         ),
                                                                   ),
                                                                 ),
-                                                              ],
-                                                            ),
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            5.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      '\$ ${columnProductRecord.price?.toString()}',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Open Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBtnText,
-                                                                            fontSize:
-                                                                                16.0,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Icon(
-                                                            Icons
-                                                                .keyboard_arrow_right,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBtnText,
-                                                            size: 19.0,
+                                                              ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .keyboard_arrow_right,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBtnText,
+                                                          size: 19.0,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ).animateOnPageLoad(animationsMap[
-                                      'rowOnPageLoadAnimation3']!);
-                                }),
+                                      'rowOnPageLoadAnimation3']!),
+                                ],
                               ),
                             );
                           },
