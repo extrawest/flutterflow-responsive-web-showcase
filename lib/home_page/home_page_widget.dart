@@ -483,7 +483,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   ) as List)
                                                       .map<String>(
                                                           (s) => s.toString())
-                                                      .toList()[usersRowItem]
+                                                      .toList()[usersRowIndex]
                                                       .toString(),
                                                   ParamType.String,
                                                 ),
