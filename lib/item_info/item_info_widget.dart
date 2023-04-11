@@ -1,3 +1,5 @@
+import 'package:responsive_builder/responsive_builder.dart';
+
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -32,277 +34,293 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
 
-  final animationsMap = {
-    'rowOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 0.ms,
-          duration: 990.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation7': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation8': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation9': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation10': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation11': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation12': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation13': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation14': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation15': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation16': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation17': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation18': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation19': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation20': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1220.ms,
-          begin: Offset(-57.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'rowOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.bounceOut,
-          delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(0.0, 24.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-  };
+  Map<String, AnimationInfo> animationsMap = {};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => ItemInfoModel());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      var deviceType = getDeviceType(MediaQuery.of(context).size);
+      var offset = Offset(0.0, 0.0);
+      switch (deviceType) {
+        case DeviceScreenType.desktop:
+          offset = Offset(57.0, 0.0);
+          break;
+        case DeviceScreenType.tablet:
+          offset = Offset(57.0, 0.0);
+          break;
+        case DeviceScreenType.mobile:
+          offset = Offset(-57.0, 0.0);
+          break;
+      }
+      animationsMap = {
+        'rowOnPageLoadAnimation1': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            FadeEffect(
+              curve: Curves.easeIn,
+              delay: 0.ms,
+              duration: 990.ms,
+              begin: 0.0,
+              end: 1.0,
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation1': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation2': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation3': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation4': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation5': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation6': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation7': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation8': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation9': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation10': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation11': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation12': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation13': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation14': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation15': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation16': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation17': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation18': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation19': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'textOnPageLoadAnimation20': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.elasticOut,
+              delay: 0.ms,
+              duration: 1220.ms,
+              begin: offset,
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        'rowOnPageLoadAnimation2': AnimationInfo(
+          trigger: AnimationTrigger.onPageLoad,
+          effects: [
+            MoveEffect(
+              curve: Curves.bounceOut,
+              delay: 0.ms,
+              duration: 970.ms,
+              begin: Offset(0.0, 24.0),
+              end: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+      };
+    });
   }
 
   @override
