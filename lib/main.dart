@@ -111,6 +111,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'CARD': CardWidget(),
       'FAVORITE': FavoriteWidget(),
       'PROFILE': ProfileWidget(),
+      'SidePanel': SidePanelWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
@@ -158,6 +159,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 20.0,
             ),
             label: 'Profile',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.view_carousel_outlined,
+              size: 27.0,
+            ),
+            label: 'Home',
             tooltip: '',
           )
         ],
