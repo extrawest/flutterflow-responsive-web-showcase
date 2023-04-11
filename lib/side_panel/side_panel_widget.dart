@@ -665,6 +665,8 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
                                                                             .map<String>((s) => s.toString())
                                                                             .toList()[usersColumnIndex]
                                                                             .toString(),
+                                                                        maxLines:
+                                                                            1,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -707,6 +709,8 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
                                                                             .map<String>((s) => s.toString())
                                                                             .toList()[usersColumnIndex]
                                                                             .toString(),
+                                                                        maxLines:
+                                                                            1,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
