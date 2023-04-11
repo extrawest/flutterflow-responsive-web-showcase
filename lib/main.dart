@@ -13,6 +13,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
+import 'home_page/home_page_presenter.dart';
 import 'index.dart';
 
 void main() async {
@@ -107,7 +108,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'HomePage': HomePageWidget(),
+      'HomePage': HomePagePresenter(),
       'CARD': CardWidget(),
       'FAVORITE': FavoriteWidget(),
       'PROFILE': ProfileWidget(),
