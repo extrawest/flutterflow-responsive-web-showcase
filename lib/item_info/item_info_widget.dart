@@ -189,6 +189,102 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
         ),
       ],
     ),
+    'textOnPageLoadAnimation13': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation14': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation15': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation16': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation17': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation18': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation19': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation20': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 1220.ms,
+          begin: Offset(-57.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
     'rowOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -461,32 +557,141 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 15.0, 10.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    DummyapiGroup.getUserProfileCall
-                                        .location(
-                                          itemInfoGetUserProfileResponse
-                                              .jsonBody,
-                                        )
-                                        .toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation12']!),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 15.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        DummyapiGroup.getUserProfileCall
+                                            .location(
+                                              itemInfoGetUserProfileResponse
+                                                  .jsonBody,
+                                            )
+                                            .toString(),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'textOnPageLoadAnimation12']!),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'country: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation13']!),
+                                    Text(
+                                      DummyapiGroup.getUserProfileCall
+                                          .locationCountry(
+                                            itemInfoGetUserProfileResponse
+                                                .jsonBody,
+                                          )
+                                          .toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation14']!),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'state: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation15']!),
+                                    Text(
+                                      DummyapiGroup.getUserProfileCall
+                                          .locationState(
+                                            itemInfoGetUserProfileResponse
+                                                .jsonBody,
+                                          )
+                                          .toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation16']!),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'city: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation17']!),
+                                    Text(
+                                      DummyapiGroup.getUserProfileCall
+                                          .locationCity(
+                                            itemInfoGetUserProfileResponse
+                                                .jsonBody,
+                                          )
+                                          .toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation18']!),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'street: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation19']!),
+                                    Text(
+                                      DummyapiGroup.getUserProfileCall
+                                          .locationStreet(
+                                            itemInfoGetUserProfileResponse
+                                                .jsonBody,
+                                          )
+                                          .toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation20']!),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
