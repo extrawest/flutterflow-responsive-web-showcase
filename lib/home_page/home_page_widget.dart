@@ -1,3 +1,5 @@
+import 'package:responsive_builder/responsive_builder.dart';
+
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -276,8 +278,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
             elevation: 0.0,
           )
         ],
-        body: Builder(
-          builder: (context) {
+        body: ResponsiveBuilder(
+          builder: (context, sizingInformation) {
             return SafeArea(
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 15.0),
