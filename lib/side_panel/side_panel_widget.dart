@@ -1,9 +1,4 @@
-import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -11,17 +6,27 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'side_panel_model.dart';
+
 export 'side_panel_model.dart';
 
 class SidePanelWidget extends StatefulWidget {
   const SidePanelWidget({
     Key? key,
     bool? isUserFetching,
+    this.onSelect,
   })  : this.isUserFetching = isUserFetching ?? false,
         super(key: key);
 
   final bool isUserFetching;
+  final Function(String? userId)? onSelect;
 
   @override
   _SidePanelWidgetState createState() => _SidePanelWidgetState();
@@ -489,27 +494,22 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
                                                   ),
                                                   child: InkWell(
                                                     onTap: () async {
-                                                      context.pushNamed(
-                                                        'ITEM_INFO',
-                                                        queryParams: {
-                                                          'userId':
-                                                              serializeParam(
-                                                            (DummyapiGroup
-                                                                    .getUsersCall
-                                                                    .ids(
-                                                              columnGetUsersResponse
-                                                                  .jsonBody,
-                                                            ) as List)
-                                                                .map<String>(
-                                                                    (s) => s
-                                                                        .toString())
-                                                                .toList()[
-                                                                    usersColumnIndex]
-                                                                .toString(),
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
+                                                      final userId =
+                                                          serializeParam(
+                                                        (DummyapiGroup
+                                                                .getUsersCall
+                                                                .ids(
+                                                          columnGetUsersResponse
+                                                              .jsonBody,
+                                                        ) as List)
+                                                            .map<String>((s) =>
+                                                                s.toString())
+                                                            .toList()[
+                                                                usersColumnIndex]
+                                                            .toString(),
+                                                        ParamType.String,
                                                       );
+                                                      widget.onSelect!(userId);
                                                     },
                                                     child: Row(
                                                       mainAxisSize:

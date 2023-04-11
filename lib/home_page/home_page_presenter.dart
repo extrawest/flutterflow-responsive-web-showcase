@@ -20,10 +20,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import 'home_page_widget.dart';
 
-class HomePagePresenter extends StatelessWidget {
+import '../item_info/item_info_widget.dart';
+import '../side_panel/side_panel_widget.dart';
+
+class HomePagePresenter extends StatefulWidget {
   final bool isUserFetching;
 
   const HomePagePresenter({
@@ -33,25 +35,37 @@ class HomePagePresenter extends StatelessWidget {
         super(key: key);
 
   @override
+  State<HomePagePresenter> createState() => _HomePagePresenterState();
+}
+
+class _HomePagePresenterState extends State<HomePagePresenter> {
+  String? userId;
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
         return HomePageWidget(
-          isUserFetching: isUserFetching,
+          isUserFetching: widget.isUserFetching,
         );
       }
       return Row(
         children: [
           SizedBox(
-            width: size.width * 2 / 6,
-            child: HomePageWidget(
-              isUserFetching: isUserFetching,
+            width: size.width * 2 / 5,
+            child: SidePanelWidget(
+              onSelect: (_userId) => setState(() => userId = _userId),
+              isUserFetching: widget.isUserFetching,
             ),
           ),
           SizedBox(
-              width: size.width * 4 / 6,
-              child: Container(color: Colors.purple)),
+              width: size.width * 3 / 5,
+              child: userId != null
+                  ? ItemInfoWidget(
+                      userId: userId,
+                    )
+                  : Placeholder()),
         ],
       );
     });
