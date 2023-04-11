@@ -568,12 +568,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        DummyapiGroup.getUserProfileCall
-                                            .location(
-                                              itemInfoGetUserProfileResponse
-                                                  .jsonBody,
-                                            )
-                                            .toString(),
+                                        'location:',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
