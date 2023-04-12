@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
 import 'backend/backend.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -126,6 +127,21 @@ class FFAppState extends ChangeNotifier {
   set searchonof(bool _value) {
     _searchonof = _value;
   }
+
+  final _usersManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> users({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _usersManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearUsersCache() => _usersManager.clear();
+  void clearUsersCacheKey(String? uniqueKey) =>
+      _usersManager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

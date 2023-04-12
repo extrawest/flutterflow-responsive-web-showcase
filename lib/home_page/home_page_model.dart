@@ -1,9 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/header_main_screen_widget.dart';
+import '/components/user_list_column_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -15,19 +15,21 @@ import 'package:provider/provider.dart';
 class HomePageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for search widget.
-  TextEditingController? searchController;
-  String? Function(BuildContext, String?)? searchControllerValidator;
-  // State field(s) for ChoiceChips widget.
-  String? choiceChipsValue;
-  FormFieldController<List<String>>? choiceChipsController;
+  // Model for HeaderMainScreen component.
+  late HeaderMainScreenModel headerMainScreenModel;
+  // Model for UserListColumn component.
+  late UserListColumnModel userListColumnModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    headerMainScreenModel = createModel(context, () => HeaderMainScreenModel());
+    userListColumnModel = createModel(context, () => UserListColumnModel());
+  }
 
   void dispose() {
-    searchController?.dispose();
+    headerMainScreenModel.dispose();
+    userListColumnModel.dispose();
   }
 
   /// Additional helper methods are added here.
