@@ -321,13 +321,6 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
         ),
       };
     });
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -433,10 +426,8 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                ).animateOnActionTrigger(
-                                  animationsMap[
-                                      'textOnActionTriggerAnimation1']!,
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation1']!),
                                 Text(
                                   ' ',
                                   style: FlutterFlowTheme.of(context)
@@ -446,10 +437,8 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                ).animateOnActionTrigger(
-                                  animationsMap[
-                                      'textOnActionTriggerAnimation2']!,
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation2']!),
                                 Text(
                                   DummyapiGroup.getUserProfileCall
                                       .firstName(
@@ -463,10 +452,8 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                ).animateOnActionTrigger(
-                                  animationsMap[
-                                      'textOnActionTriggerAnimation3']!,
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation3']!),
                                 Text(
                                   ' ',
                                   style: FlutterFlowTheme.of(context)
@@ -476,10 +463,8 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                ).animateOnActionTrigger(
-                                  animationsMap[
-                                      'textOnActionTriggerAnimation4']!,
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation4']!),
                                 Text(
                                   DummyapiGroup.getUserProfileCall
                                       .lastName(
@@ -493,10 +478,8 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                ).animateOnActionTrigger(
-                                  animationsMap[
-                                      'textOnActionTriggerAnimation5']!,
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation5']!),
                               ],
                             ),
                           ),
@@ -511,7 +494,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!),
+                                    animationsMap['textOnPageLoadAnimation6']!),
                                 Text(
                                   DummyapiGroup.getUserProfileCall
                                       .email(
@@ -521,7 +504,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation2']!),
+                                    animationsMap['textOnPageLoadAnimation7']!),
                               ],
                             ),
                           ),
@@ -536,7 +519,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation3']!),
+                                    animationsMap['textOnPageLoadAnimation8']!),
                                 Text(
                                   DummyapiGroup.getUserProfileCall
                                       .phone(
@@ -546,7 +529,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation4']!),
+                                    animationsMap['textOnPageLoadAnimation9']!),
                               ],
                             ),
                           ),
@@ -565,8 +548,8 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation5']!),
+                                ).animateOnPageLoad(animationsMap[
+                                    'textOnPageLoadAnimation10']!),
                                 Expanded(
                                   child: Text(
                                     valueOrDefault<String>(
@@ -587,7 +570,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation6']!),
+                                      'textOnPageLoadAnimation11']!),
                                 ),
                               ],
                             ),
@@ -612,7 +595,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ).animateOnPageLoad(animationsMap[
-                                          'textOnPageLoadAnimation7']!),
+                                          'textOnPageLoadAnimation12']!),
                                     ),
                                   ],
                                 ),
@@ -628,7 +611,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation8']!),
+                                        'textOnPageLoadAnimation13']!),
                                     Text(
                                       DummyapiGroup.getUserProfileCall
                                           .locationCountry(
@@ -639,7 +622,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation9']!),
+                                        'textOnPageLoadAnimation14']!),
                                   ],
                                 ),
                               ),
@@ -654,7 +637,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation10']!),
+                                        'textOnPageLoadAnimation15']!),
                                     Text(
                                       DummyapiGroup.getUserProfileCall
                                           .locationState(
@@ -665,7 +648,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation11']!),
+                                        'textOnPageLoadAnimation16']!),
                                   ],
                                 ),
                               ),
@@ -680,7 +663,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation12']!),
+                                        'textOnPageLoadAnimation17']!),
                                     Text(
                                       DummyapiGroup.getUserProfileCall
                                           .locationCity(
@@ -691,7 +674,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation13']!),
+                                        'textOnPageLoadAnimation18']!),
                                   ],
                                 ),
                               ),
@@ -706,7 +689,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation14']!),
+                                        'textOnPageLoadAnimation19']!),
                                     Text(
                                       DummyapiGroup.getUserProfileCall
                                           .locationStreet(
@@ -717,7 +700,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation15']!),
+                                        'textOnPageLoadAnimation20']!),
                                   ],
                                 ),
                               ),
