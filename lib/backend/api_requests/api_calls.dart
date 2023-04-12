@@ -36,7 +36,7 @@ class GetUsersCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
     );
   }
 
@@ -97,7 +97,7 @@ class GetPostsCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
     );
   }
 
