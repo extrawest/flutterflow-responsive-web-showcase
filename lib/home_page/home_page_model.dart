@@ -1,6 +1,6 @@
-import '/backend/api_requests/api_calls.dart';
 import '/components/header_main_screen_widget.dart';
 import '/components/user_list_column_widget.dart';
+import '/components/user_list_row_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -17,6 +17,8 @@ class HomePageModel extends FlutterFlowModel {
 
   // Model for HeaderMainScreen component.
   late HeaderMainScreenModel headerMainScreenModel;
+  // Model for UserListRow component.
+  late UserListRowModel userListRowModel;
   // Model for UserListColumn component.
   late UserListColumnModel userListColumnModel;
 
@@ -24,11 +26,13 @@ class HomePageModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     headerMainScreenModel = createModel(context, () => HeaderMainScreenModel());
+    userListRowModel = createModel(context, () => UserListRowModel());
     userListColumnModel = createModel(context, () => UserListColumnModel());
   }
 
   void dispose() {
     headerMainScreenModel.dispose();
+    userListRowModel.dispose();
     userListColumnModel.dispose();
   }
 

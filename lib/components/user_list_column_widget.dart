@@ -63,7 +63,9 @@ class _UserListColumnWidgetState extends State<UserListColumnWidget>
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 20.0, 0.0),
       child: FutureBuilder<ApiCallResponse>(
-        future: DummyapiGroup.getUsersCall.call(),
+        future: FFAppState().users(
+          requestFn: () => DummyapiGroup.getUsersCall.call(),
+        ),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {

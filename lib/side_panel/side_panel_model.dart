@@ -1,4 +1,4 @@
-import '/backend/api_requests/api_calls.dart';
+import '/components/user_list_column_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -21,13 +21,18 @@ class SidePanelModel extends FlutterFlowModel {
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsController;
+  // Model for UserListColumn component.
+  late UserListColumnModel userListColumnModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    userListColumnModel = createModel(context, () => UserListColumnModel());
+  }
 
   void dispose() {
     searchController?.dispose();
+    userListColumnModel.dispose();
   }
 
   /// Additional helper methods are added here.
