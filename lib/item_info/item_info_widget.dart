@@ -815,7 +815,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                     children: [
                                                       Expanded(
                                                         child: Text(
-                                                          'Add to cart',
+                                                          'Posts by User',
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme

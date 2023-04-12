@@ -198,6 +198,84 @@ class GetUserPostsCall {
       cache: false,
     );
   }
+
+  dynamic data(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+        true,
+      );
+  dynamic dataid(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].id''',
+        true,
+      );
+  dynamic dataimage(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].image''',
+        true,
+      );
+  dynamic datalikes(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].likes''',
+        true,
+      );
+  dynamic datatags(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].tags''',
+        true,
+      );
+  dynamic datatext(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].text''',
+        true,
+      );
+  dynamic datapublishDate(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].publishDate''',
+        true,
+      );
+  dynamic dataowner(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].owner''',
+        true,
+      );
+  dynamic dataownerid(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].owner.id''',
+        true,
+      );
+  dynamic dataownertitle(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].owner.title''',
+        true,
+      );
+  dynamic dataownerfirstName(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].owner.firstName''',
+        true,
+      );
+  dynamic dataownerlastName(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].owner.lastName''',
+        true,
+      );
+  dynamic dataownerpicture(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].owner.picture''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.page''',
+      );
+  dynamic limit(dynamic response) => getJsonField(
+        response,
+        r'''$.limit''',
+      );
 }
 
 class GetUserCommentsCall {

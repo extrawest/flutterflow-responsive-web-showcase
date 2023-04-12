@@ -139,323 +139,333 @@ class _HomePageWidgetState extends State<HomePageWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      drawer: Container(
-        width: MediaQuery.of(context).size.width * 0.7,
-        child: Drawer(
-          elevation: 25.0,
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15.0, 20.0, 15.0, 15.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
+    return FutureBuilder<ApiCallResponse>(
+      future: DummyapiGroup.getUsersCall.call(),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 35.0,
+              height: 35.0,
+              child: SpinKitSquareCircle(
+                color: FlutterFlowTheme.of(context).lineColor,
+                size: 35.0,
+              ),
+            ),
+          );
+        }
+        final homePageGetUsersResponse = snapshot.data!;
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          drawer: Container(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Drawer(
+              elevation: 25.0,
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 20.0, 15.0, 15.0),
+                child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 70.0,
-                      height: 70.0,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.network(
-                        'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
-                        fit: BoxFit.cover,
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 70.0,
+                          height: 70.0,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Andrea Davis',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Andrea Davis',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Open Sans',
                                     fontSize: 16.0,
                                   ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      body: NestedScrollView(
-        headerSliverBuilder: (context, _) => [
-          SliverAppBar(
-            pinned: false,
-            floating: true,
-            snap: true,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            automaticallyImplyLeading: false,
-            leading: InkWell(
-              onTap: () async {
-                scaffoldKey.currentState!.openDrawer();
-              },
-              child: Icon(
-                FFIcons.kmenu2,
-                color: FlutterFlowTheme.of(context).lineColor,
-                size: 30.0,
-              ),
-            ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
-            actions: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (Theme.of(context).brightness == Brightness.light)
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.dark);
-                          },
-                          child: FaIcon(
-                            FontAwesomeIcons.moon,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            size: 22.0,
+                            ),
                           ),
-                        ),
-                      ),
-                    if (Theme.of(context).brightness == Brightness.dark)
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.light);
-                          },
-                          child: FaIcon(
-                            FontAwesomeIcons.solidMoon,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            size: 22.0,
-                          ),
-                        ),
-                      ),
-                    InkWell(
-                      onTap: () async {
-                        context.pushNamed('PROFILE');
-                      },
-                      child: Container(
-                        width: 40.0,
-                        height: 40.0,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.network(
-                          'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
-                          fit: BoxFit.cover,
-                        ),
+                        ],
                       ),
                     ),
                   ],
-                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation4']!),
+                ),
               ),
-            ],
-            centerTitle: false,
-            elevation: 0.0,
-          )
-        ],
-        body: Builder(
-          builder: (context) {
-            return SafeArea(
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 15.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 15.0, 10.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: TextFormField(
-                                      controller: _model.searchController,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        hintText: 'Search',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall,
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                        ),
-                                        errorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                        ),
-                                        focusedErrorBorder:
-                                            UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .searchColor,
-                                        prefixIcon: Icon(
-                                          Icons.search_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                        ),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      validator: _model
-                                          .searchControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ],
-                              ).animateOnPageLoad(
-                                  animationsMap['rowOnPageLoadAnimation1']!),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 5.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 5.0, 0.0, 5.0),
-                                      child: FlutterFlowChoiceChips(
-                                        options: [
-                                          ChipData('All'),
-                                          ChipData('ms'),
-                                          ChipData('miss'),
-                                          ChipData('mr'),
-                                          ChipData('mrs')
-                                        ],
-                                        onChanged: (val) => setState(() =>
-                                            _model.choiceChipsValue =
-                                                val?.first),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: Colors.white,
-                                                  ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          iconSize: 20.0,
-                                          elevation: 5.0,
-                                        ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor: Colors.white,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: Color(0xFF323B45),
-                                                  ),
-                                          iconColor: Colors.black,
-                                          iconSize: 18.0,
-                                          elevation: 0.0,
-                                        ),
-                                        chipSpacing: 10.0,
-                                        multiselect: false,
-                                        initialized:
-                                            _model.choiceChipsValue != null,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .choiceChipsController ??=
-                                            FormFieldController<List<String>>(
-                                          ['All'],
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'choiceChipsOnPageLoadAnimation']!),
-                                    ),
-                                  ),
-                                ],
+            ),
+          ),
+          body: NestedScrollView(
+            headerSliverBuilder: (context, _) => [
+              SliverAppBar(
+                pinned: false,
+                floating: true,
+                snap: true,
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  onTap: () async {
+                    scaffoldKey.currentState!.openDrawer();
+                  },
+                  child: Icon(
+                    FFIcons.kmenu2,
+                    color: FlutterFlowTheme.of(context).lineColor,
+                    size: 30.0,
+                  ),
+                ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
+                actions: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if (Theme.of(context).brightness == Brightness.light)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 20.0, 0.0),
+                            child: InkWell(
+                              onTap: () async {
+                                setDarkModeSetting(context, ThemeMode.dark);
+                              },
+                              child: FaIcon(
+                                FontAwesomeIcons.moon,
+                                color: FlutterFlowTheme.of(context).lineColor,
+                                size: 22.0,
                               ),
                             ),
-                          ],
+                          ),
+                        if (Theme.of(context).brightness == Brightness.dark)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 20.0, 0.0),
+                            child: InkWell(
+                              onTap: () async {
+                                setDarkModeSetting(context, ThemeMode.light);
+                              },
+                              child: FaIcon(
+                                FontAwesomeIcons.solidMoon,
+                                color: FlutterFlowTheme.of(context).lineColor,
+                                size: 22.0,
+                              ),
+                            ),
+                          ),
+                        InkWell(
+                          onTap: () async {
+                            context.pushNamed('PROFILE');
+                          },
+                          child: Container(
+                            width: 40.0,
+                            height: 40.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                        child: FutureBuilder<ApiCallResponse>(
-                          future: DummyapiGroup.getUsersCall.call(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 35.0,
-                                  height: 35.0,
-                                  child: SpinKitSquareCircle(
-                                    color:
-                                        FlutterFlowTheme.of(context).lineColor,
-                                    size: 35.0,
+                      ],
+                    ).animateOnPageLoad(
+                        animationsMap['rowOnPageLoadAnimation4']!),
+                  ),
+                ],
+                centerTitle: false,
+                elevation: 0.0,
+              )
+            ],
+            body: Builder(
+              builder: (context) {
+                return SafeArea(
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 15.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 10.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 15.0, 10.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: TextFormField(
+                                          controller: _model.searchController,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            hintText: 'Search',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall,
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(100.0),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(100.0),
+                                            ),
+                                            errorBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(100.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(100.0),
+                                            ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .searchColor,
+                                            prefixIcon: Icon(
+                                              Icons.search_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          validator: _model
+                                              .searchControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ],
+                                  ).animateOnPageLoad(animationsMap[
+                                      'rowOnPageLoadAnimation1']!),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 5.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 5.0, 0.0, 5.0),
+                                          child: FlutterFlowChoiceChips(
+                                            options: [
+                                              ChipData('All'),
+                                              ChipData('ms'),
+                                              ChipData('miss'),
+                                              ChipData('mr'),
+                                              ChipData('mrs')
+                                            ],
+                                            onChanged: (val) => setState(() =>
+                                                _model.choiceChipsValue =
+                                                    val?.first),
+                                            selectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: Colors.white,
+                                                      ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              iconSize: 20.0,
+                                              elevation: 5.0,
+                                            ),
+                                            unselectedChipStyle: ChipStyle(
+                                              backgroundColor: Colors.white,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            Color(0xFF323B45),
+                                                      ),
+                                              iconColor: Colors.black,
+                                              iconSize: 18.0,
+                                              elevation: 0.0,
+                                            ),
+                                            chipSpacing: 10.0,
+                                            multiselect: false,
+                                            initialized:
+                                                _model.choiceChipsValue != null,
+                                            alignment: WrapAlignment.start,
+                                            controller:
+                                                _model.choiceChipsController ??=
+                                                    FormFieldController<
+                                                        List<String>>(
+                                              ['All'],
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'choiceChipsOnPageLoadAnimation']!),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              );
-                            }
-                            final productGetUsersResponse = snapshot.data!;
-                            return Builder(
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 20.0, 0.0, 0.0),
+                            child: Builder(
                               builder: (context) {
                                 final usersRow = DummyapiGroup.getUsersCall
                                         .datas(
-                                          productGetUsersResponse.jsonBody,
+                                          homePageGetUsersResponse.jsonBody,
                                         )
                                         ?.toList() ??
                                     [];
@@ -478,7 +488,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 'userId': serializeParam(
                                                   (DummyapiGroup.getUsersCall
                                                           .ids(
-                                                    productGetUsersResponse
+                                                    homePageGetUsersResponse
                                                         .jsonBody,
                                                   ) as List)
                                                       .map<String>(
@@ -558,7 +568,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               DummyapiGroup
                                                                   .getUsersCall
                                                                   .pictures(
-                                                                productGetUsersResponse
+                                                                homePageGetUsersResponse
                                                                     .jsonBody,
                                                               )[usersRowIndex],
                                                               width: 100.0,
@@ -588,41 +598,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                             (DummyapiGroup
                                                                     .getUsersCall
                                                                     .titles(
-                                                              productGetUsersResponse
-                                                                  .jsonBody,
-                                                            ) as List)
-                                                                .map<String>(
-                                                                    (s) => s
-                                                                        .toString())
-                                                                .toList()[
-                                                                    usersRowIndex]
-                                                                .toString()
-                                                                .maybeHandleOverflow(
-                                                                    maxChars:
-                                                                        20),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            ' ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
-                                                          Text(
-                                                            (DummyapiGroup
-                                                                    .getUsersCall
-                                                                    .lastNames(
-                                                              productGetUsersResponse
+                                                              homePageGetUsersResponse
                                                                   .jsonBody,
                                                             ) as List)
                                                                 .map<String>(
@@ -656,7 +632,41 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                             (DummyapiGroup
                                                                     .getUsersCall
                                                                     .firstNames(
-                                                              productGetUsersResponse
+                                                              homePageGetUsersResponse
+                                                                  .jsonBody,
+                                                            ) as List)
+                                                                .map<String>(
+                                                                    (s) => s
+                                                                        .toString())
+                                                                .toList()[
+                                                                    usersRowIndex]
+                                                                .toString()
+                                                                .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        20),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            ' ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                          Text(
+                                                            (DummyapiGroup
+                                                                    .getUsersCall
+                                                                    .lastNames(
+                                                              homePageGetUsersResponse
                                                                   .jsonBody,
                                                             ) as List)
                                                                 .map<String>(
@@ -695,58 +705,38 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ).animateOnPageLoad(
                                     animationsMap['rowOnPageLoadAnimation2']!);
                               },
-                            );
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 30.0, 10.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Most Popular',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      fontSize: 23.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation']!),
                             ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 15.0, 20.0, 0.0),
-                        child: FutureBuilder<ApiCallResponse>(
-                          future: DummyapiGroup.getUsersCall.call(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 35.0,
-                                  height: 35.0,
-                                  child: SpinKitSquareCircle(
-                                    color:
-                                        FlutterFlowTheme.of(context).lineColor,
-                                    size: 35.0,
-                                  ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 30.0, 10.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Most Popular',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 23.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation']!),
                                 ),
-                              );
-                            }
-                            final columnGetUsersResponse = snapshot.data!;
-                            return Builder(
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                10.0, 15.0, 20.0, 0.0),
+                            child: Builder(
                               builder: (context) {
                                 final usersColumn = DummyapiGroup.getUsersCall
                                         .datas(
-                                          columnGetUsersResponse.jsonBody,
+                                          homePageGetUsersResponse.jsonBody,
                                         )
                                         ?.toList() ??
                                     [];
@@ -812,7 +802,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                             (DummyapiGroup
                                                                     .getUsersCall
                                                                     .ids(
-                                                              columnGetUsersResponse
+                                                              homePageGetUsersResponse
                                                                   .jsonBody,
                                                             ) as List)
                                                                 .map<String>(
@@ -899,7 +889,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     DummyapiGroup
                                                                         .getUsersCall
                                                                         .pictures(
-                                                                      columnGetUsersResponse
+                                                                      homePageGetUsersResponse
                                                                           .jsonBody,
                                                                     )[usersColumnIndex],
                                                                     width:
@@ -943,7 +933,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       child:
                                                                           Text(
                                                                         (DummyapiGroup.getUsersCall.titles(
-                                                                          columnGetUsersResponse
+                                                                          homePageGetUsersResponse
                                                                               .jsonBody,
                                                                         ) as List)
                                                                             .map<String>((s) => s.toString())
@@ -974,7 +964,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       child:
                                                                           Text(
                                                                         (DummyapiGroup.getUsersCall.firstNames(
-                                                                          columnGetUsersResponse
+                                                                          homePageGetUsersResponse
                                                                               .jsonBody,
                                                                         ) as List)
                                                                             .map<String>((s) => s.toString())
@@ -1016,7 +1006,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       child:
                                                                           Text(
                                                                         (DummyapiGroup.getUsersCall.lastNames(
-                                                                          columnGetUsersResponse
+                                                                          homePageGetUsersResponse
                                                                               .jsonBody,
                                                                         ) as List)
                                                                             .map<String>((s) => s.toString())
@@ -1075,18 +1065,18 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   ),
                                 );
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
