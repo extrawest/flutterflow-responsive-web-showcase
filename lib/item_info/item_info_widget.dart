@@ -335,6 +335,13 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    bool isShowAppBar = false;
+    switch (deviceType) {
+      case DeviceScreenType.mobile:
+        isShowAppBar = true;
+        break;
+    }
     return FutureBuilder<ApiCallResponse>(
       future: DummyapiGroup.getUserProfileCall.call(
         userId: widget.userId,
@@ -362,20 +369,22 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primary,
               automaticallyImplyLeading: false,
-              leading: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).lineColor,
-                  size: 30.0,
-                ),
-                onPressed: () async {
-                  context.pop();
-                },
-              ),
+              leading: isShowAppBar
+                  ? FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 30.0,
+                      borderWidth: 1.0,
+                      buttonSize: 60.0,
+                      icon: Icon(
+                        Icons.arrow_back_rounded,
+                        color: FlutterFlowTheme.of(context).lineColor,
+                        size: 30.0,
+                      ),
+                      onPressed: () async {
+                        context.pop();
+                      },
+                    )
+                  : null,
               actions: [],
               centerTitle: false,
               elevation: 0.0,

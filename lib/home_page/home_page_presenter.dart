@@ -52,15 +52,15 @@ class _HomePagePresenterState extends State<HomePagePresenter> {
       }
       return Row(
         children: [
-          SizedBox(
-            width: size.width * 2 / 5,
+          Expanded(
+            flex: 1,
             child: SidePanelWidget(
               onSelect: (_userId) => setState(() => userId = _userId),
               isUserFetching: widget.isUserFetching,
             ),
           ),
-          SizedBox(
-              width: size.width * 3 / 5,
+          Expanded(
+              flex: 2,
               child: userId != null
                   ? ItemInfoWidget(
                       userId: userId,
