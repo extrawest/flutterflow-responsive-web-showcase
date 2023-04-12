@@ -85,12 +85,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'SidePanel',
               path: 'sidePanel',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'SidePanel')
-                  : SidePanelWidget(
-                      isUserFetching:
-                          params.getParam('isUserFetching', ParamType.bool),
-                    ),
+              builder: (context, params) => SidePanelWidget(
+                isUserFetching:
+                    params.getParam('isUserFetching', ParamType.bool),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
