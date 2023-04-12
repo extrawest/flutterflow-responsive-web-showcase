@@ -645,82 +645,37 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
                                                                           0.0,
                                                                           5.0,
                                                                           0.0,
                                                                           0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        (DummyapiGroup.getUsersCall.firstNames(
-                                                                          columnGetUsersResponse
-                                                                              .jsonBody,
-                                                                        ) as List)
-                                                                            .map<String>((s) => s.toString())
-                                                                            .toList()[usersColumnIndex]
-                                                                            .toString(),
-                                                                        maxLines:
-                                                                            1,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Open Sans',
-                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                              fontSize: 16.0,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        ' ',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Open Sans',
-                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                              fontSize: 16.0,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        (DummyapiGroup.getUsersCall.lastNames(
-                                                                          columnGetUsersResponse
-                                                                              .jsonBody,
-                                                                        ) as List)
-                                                                            .map<String>((s) => s.toString())
-                                                                            .toList()[usersColumnIndex]
-                                                                            .toString(),
-                                                                        maxLines:
-                                                                            1,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Open Sans',
-                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                              fontSize: 16.0,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
+                                                                  child: Text(
+                                                                    '${(DummyapiGroup.getUsersCall.firstNames(
+                                                                      columnGetUsersResponse
+                                                                          .jsonBody,
+                                                                    ) as List).map<String>((s) => s.toString()).toList()[usersColumnIndex].toString()} ${(DummyapiGroup.getUsersCall.lastNames(
+                                                                      columnGetUsersResponse
+                                                                          .jsonBody,
+                                                                    ) as List).map<String>((s) => s.toString()).toList()[usersColumnIndex].toString()}',
+                                                                    maxLines: 1,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBtnText,
+                                                                          fontSize:
+                                                                              16.0,
+                                                                        ),
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                  ),
                                                                 ),
                                                               ],
                                                             ),
