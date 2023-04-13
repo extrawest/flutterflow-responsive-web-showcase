@@ -358,38 +358,6 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final tags = getJsonField(
-                                          userPostsItem,
-                                          r'''$.data.tags''',
-                                        ).toList();
-                                        return Wrap(
-                                          spacing: 10.0,
-                                          runSpacing: 10.0,
-                                          alignment: WrapAlignment.start,
-                                          crossAxisAlignment:
-                                              WrapCrossAlignment.start,
-                                          direction: Axis.horizontal,
-                                          runAlignment: WrapAlignment.start,
-                                          verticalDirection:
-                                              VerticalDirection.down,
-                                          clipBehavior: Clip.none,
-                                          children: List.generate(tags.length,
-                                              (tagsIndex) {
-                                            final tagsItem = tags[tagsIndex];
-                                            return Container(
-                                                width: 100,
-                                                height: 100,
-                                                color: Colors.green);
-                                          }),
-                                        );
-                                      },
-                                    ),
-                                  ),
                                 ],
                               ),
                             ),
