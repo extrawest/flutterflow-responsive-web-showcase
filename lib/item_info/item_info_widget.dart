@@ -40,7 +40,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => ItemInfoModel());
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       var deviceType = getDeviceType(MediaQuery.of(context).size);
       var offset = Offset(0.0, 0.0);
       switch (deviceType) {
@@ -320,7 +320,18 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
           ],
         ),
       };
+      // On page load action.
+      _model.userPosts = await DummyapiGroup.getUserPostsCall.call(
+        userId: widget.userId,
+      );
     });
+
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -748,7 +759,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Text(
-                                              '\$ 235',
+                                              'Posts:',
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -758,7 +769,38 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .lineColor,
-                                                    fontSize: 25.0,
+                                                    fontSize: 20.0,
+                                                    fontWeight: FontWeight.w800,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: Text(
+                                              (DummyapiGroup.getUserPostsCall
+                                                      .datatext(
+                                                (_model.userPosts?.jsonBody ??
+                                                    ''),
+                                              ) as List)
+                                                  .map<String>(
+                                                      (s) => s.toString())
+                                                  .toList()
+                                                  .length
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Open Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .lineColor,
+                                                    fontSize: 20.0,
                                                     fontWeight: FontWeight.w800,
                                                   ),
                                             ),

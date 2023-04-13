@@ -31,7 +31,7 @@ class _EmptyPersonalInfoScreenWidgetState
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
-          curve: Curves.bounceOut,
+          curve: Curves.linear,
           delay: 100.ms,
           duration: 600.ms,
           begin: Offset(0.0, 0.0),
