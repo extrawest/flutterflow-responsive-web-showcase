@@ -155,7 +155,12 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
-                                            'https://i.picsum.photos/id/1074/5472/3648.jpg?hmac=w-Fbv9bl0KpEUgZugbsiGk3Y2-LGAuiLZOYsRk0zo4A',
+                                            DummyapiGroup.getUserPostsCall
+                                                .dataownerpicture(
+                                                  postsScreenGetUserPostsResponse
+                                                      .jsonBody,
+                                                )
+                                                .first,
                                             fit: BoxFit.fitHeight,
                                           ),
                                         ),
@@ -261,7 +266,7 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                           final userPostsItem = userPosts[userPostsIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 12.0),
+                                0.0, 0.0, 0.0, 12.0),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.94,
                               decoration: BoxDecoration(),
@@ -485,46 +490,37 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                       ],
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Builder(
-                                          builder: (context) {
-                                            final postTags =
-                                                DummyapiGroup.getUserPostsCall
-                                                        .datatags(
-                                                          postsScreenGetUserPostsResponse
-                                                              .jsonBody,
-                                                        )
-                                                        ?.toList() ??
-                                                    [];
-                                            return Wrap(
-                                              spacing: 0.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.start,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children:
-                                                  List.generate(postTags.length,
-                                                      (postTagsIndex) {
-                                                final postTagsItem =
-                                                    postTags[postTagsIndex];
-                                                return Container(
-                                                    width: 100,
-                                                    height: 100,
-                                                    color: Colors.green);
-                                              }),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final tags = getJsonField(
+                                          userPostsItem,
+                                          r'''$.data.tags''',
+                                        ).toList();
+                                        return Wrap(
+                                          spacing: 10.0,
+                                          runSpacing: 10.0,
+                                          alignment: WrapAlignment.start,
+                                          crossAxisAlignment:
+                                              WrapCrossAlignment.start,
+                                          direction: Axis.horizontal,
+                                          runAlignment: WrapAlignment.start,
+                                          verticalDirection:
+                                              VerticalDirection.down,
+                                          clipBehavior: Clip.none,
+                                          children: List.generate(tags.length,
+                                              (tagsIndex) {
+                                            final tagsItem = tags[tagsIndex];
+                                            return Container(
+                                                width: 100,
+                                                height: 100,
+                                                color: Colors.green);
+                                          }),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
