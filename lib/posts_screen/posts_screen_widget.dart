@@ -52,8 +52,10 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: DummyapiGroup.getUserPostsCall.call(
-        userId: widget.userId,
+      future: _model.postsList(
+        requestFn: () => DummyapiGroup.getUserPostsCall.call(
+          userId: widget.userId,
+        ),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
