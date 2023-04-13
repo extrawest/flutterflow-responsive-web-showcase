@@ -108,8 +108,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'HomePage': HomePagePresenter(),
-      'CARD': CardWidget(),
+      'HomePage': HomePageWidget(),
       'FAVORITE': FavoriteWidget(),
       'PROFILE': ProfileWidget(),
     };
@@ -135,14 +134,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 27.0,
             ),
             label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart_rounded,
-              size: 25.0,
-            ),
-            label: 'Cart',
             tooltip: '',
           ),
           BottomNavigationBarItem(

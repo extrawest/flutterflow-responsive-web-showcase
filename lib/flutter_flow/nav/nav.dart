@@ -57,18 +57,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'CARD',
-              path: 'card',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'CARD')
-                  : CardWidget(),
-            ),
-            FFRoute(
-              name: 'PAYMANT',
-              path: 'paymant',
-              builder: (context, params) => PaymantWidget(),
-            ),
-            FFRoute(
               name: 'FAVORITE',
               path: 'favorite',
               builder: (context, params) => params.isEmpty
