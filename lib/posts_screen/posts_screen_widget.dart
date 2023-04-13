@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -31,13 +30,6 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PostsScreenModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userInfo = await DummyapiGroup.getUserProfileCall.call(
-        userId: widget.userId,
-      );
-    });
   }
 
   @override
@@ -75,18 +67,6 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              print('FloatingActionButton pressed ...');
-            },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            elevation: 8.0,
-            child: Icon(
-              Icons.create_rounded,
-              color: Colors.white,
-              size: 24.0,
-            ),
-          ),
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
@@ -169,11 +149,11 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
-                                              DummyapiGroup.getUserProfileCall
-                                                  .picture(
-                                                (_model.userInfo?.jsonBody ??
-                                                    ''),
-                                              ),
+                                              DummyapiGroup.getUserPostsCall
+                                                  .dataownerpicture(
+                                                postsScreenGetUserPostsResponse
+                                                    .jsonBody,
+                                              )[userPostsIndex],
                                               fit: BoxFit.fitWidth,
                                             ),
                                           ),
@@ -190,12 +170,14 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                DummyapiGroup.getUserProfileCall
-                                                    .title(
-                                                      (_model.userInfo
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                    )
+                                                (DummyapiGroup.getUserPostsCall
+                                                        .dataownertitle(
+                                                  postsScreenGetUserPostsResponse
+                                                      .jsonBody,
+                                                ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()[userPostsIndex]
                                                     .toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -206,12 +188,14 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                DummyapiGroup.getUserProfileCall
-                                                    .firstName(
-                                                      (_model.userInfo
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                    )
+                                                (DummyapiGroup.getUserPostsCall
+                                                        .dataownerfirstName(
+                                                  postsScreenGetUserPostsResponse
+                                                      .jsonBody,
+                                                ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()[userPostsIndex]
                                                     .toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -222,12 +206,14 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                DummyapiGroup.getUserProfileCall
-                                                    .lastName(
-                                                      (_model.userInfo
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                    )
+                                                (DummyapiGroup.getUserPostsCall
+                                                        .dataownerlastName(
+                                                  postsScreenGetUserPostsResponse
+                                                      .jsonBody,
+                                                ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()[userPostsIndex]
                                                     .toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
