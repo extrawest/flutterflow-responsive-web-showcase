@@ -776,7 +776,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                       0.0, 0.0, 10.0, 0.0),
                                               child: Text(
                                                 (DummyapiGroup.getUserPostsCall
-                                                        .datatext(
+                                                        .dataid(
                                                   (_model.userPosts?.jsonBody ??
                                                       ''),
                                                 ) as List)
