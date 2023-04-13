@@ -24,11 +24,11 @@ class _EmptyPersonalInfoScreenWidgetState
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-  var hasIconTriggered = false;
+
   final animationsMap = {
-    'iconOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: false,
+    'iconOnPageLoadAnimation': AnimationInfo(
+      loop: true,
+      trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
           curve: Curves.bounceOut,
@@ -45,13 +45,6 @@ class _EmptyPersonalInfoScreenWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => EmptyPersonalInfoScreenModel());
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -101,11 +94,10 @@ class _EmptyPersonalInfoScreenWidgetState
                           EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                       child: Icon(
                         Icons.chevron_left_outlined,
-                        color: Colors.black,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         size: 24.0,
-                      ).animateOnActionTrigger(
-                          animationsMap['iconOnActionTriggerAnimation']!,
-                          hasBeenTriggered: hasIconTriggered),
+                      ).animateOnPageLoad(
+                          animationsMap['iconOnPageLoadAnimation']!),
                     ),
                     Expanded(
                       child: Padding(
