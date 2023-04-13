@@ -85,164 +85,34 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
               size: 24.0,
             ),
           ),
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(100.0),
-            child: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              automaticallyImplyLeading: false,
-              actions: [],
-              flexibleSpace: FlexibleSpaceBar(
-                title: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30.0,
-                              borderWidth: 1.0,
-                              buttonSize: 50.0,
-                              icon: Icon(
-                                Icons.arrow_back_rounded,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 30.0,
-                              ),
-                              onPressed: () async {
-                                context.pop();
-                              },
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 1.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3.0,
-                                  color: Color(0x3A000000),
-                                  offset: Offset(0.0, 1.0),
-                                )
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: Container(
-                                          width: 40.0,
-                                          height: 40.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            DummyapiGroup.getUserPostsCall
-                                                .dataownerpicture(
-                                                  postsScreenGetUserPostsResponse
-                                                      .jsonBody,
-                                                )
-                                                .first,
-                                            fit: BoxFit.fitHeight,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Welcome',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineMedium,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          (DummyapiGroup.getUserPostsCall
-                                                  .dataownerfirstName(
-                                            postsScreenGetUserPostsResponse
-                                                .jsonBody,
-                                          ) as List)
-                                              .map<String>((s) => s.toString())
-                                              .toList()
-                                              .first
-                                              .toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 0.0, 12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Here are your posts ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color: Color(0xFF8B97A2),
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      'Page Title',
-                      style:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: 'Open Sans',
-                                color: Colors.white,
-                                fontSize: 22.0,
-                              ),
-                    ),
-                  ],
-                ),
-                centerTitle: false,
-                expandedTitleScale: 1.0,
-                titlePadding:
-                    EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).secondary,
+                size: 30.0,
               ),
-              elevation: 0.0,
+              onPressed: () async {
+                context.pop();
+              },
             ),
+            title: Text(
+              'Posts',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Open Sans',
+                    color: FlutterFlowTheme.of(context).secondary,
+                    fontSize: 22.0,
+                  ),
+            ),
+            actions: [],
+            centerTitle: false,
+            elevation: 0.0,
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -332,8 +202,7 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 0.0, 0.0, 0.0),
+                                                  .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 DummyapiGroup.getUserProfileCall
                                                     .firstName(
@@ -349,8 +218,7 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 0.0, 0.0, 0.0),
+                                                  .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 DummyapiGroup.getUserProfileCall
                                                     .lastName(
