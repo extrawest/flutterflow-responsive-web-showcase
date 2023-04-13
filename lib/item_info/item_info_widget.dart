@@ -314,6 +314,15 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
       _model.userPosts = await DummyapiGroup.getUserPostsCall.call(
         userId: widget.userId,
       );
+      if ((_model.userPosts?.succeeded ?? true)) {
+        setState(() {
+          _model.isLoading = false;
+        });
+      } else {
+        setState(() {
+          _model.isLoading = true;
+        });
+      }
     });
 
     setupAnimations(
@@ -745,63 +754,70 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 10.0, 0.0),
-                                            child: Text(
-                                              'Posts:',
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .lineColor,
-                                                    fontSize: 20.0,
-                                                    fontWeight: FontWeight.w800,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        if ((_model.userPosts?.succeeded ??
-                                                true) ==
-                                            true)
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 10.0, 0.0),
-                                              child: Text(
-                                                (DummyapiGroup.getUserPostsCall
-                                                        .dataid(
-                                                  (_model.userPosts?.jsonBody ??
-                                                      ''),
-                                                ) as List)
-                                                    .map<String>(
-                                                        (s) => s.toString())
-                                                    .toList()
-                                                    .length
-                                                    .toString(),
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 4.0, 0.0),
+                                                child: Text(
+                                                  'Posts:',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .lineColor,
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                      ),
+                                                ),
+                                              ),
+                                              if (_model.isLoading != true)
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Text(
+                                                      DummyapiGroup
+                                                          .getUserPostsCall
+                                                          .total(
+                                                            (_model.userPosts
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          )
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .lineColor,
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                          FontWeight.w800,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .lineColor,
+                                                                fontSize: 20.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800,
+                                                              ),
                                                     ),
-                                              ),
-                                            ),
+                                                  ),
+                                                ),
+                                            ],
                                           ),
+                                        ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
