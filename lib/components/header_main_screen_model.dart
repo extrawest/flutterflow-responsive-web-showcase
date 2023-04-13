@@ -18,7 +18,7 @@ class HeaderMainScreenModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? searchControllerValidator;
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
-  FormFieldController<List<String>>? choiceChipsController;
+  FormFieldController<List<String>>? choiceChipsValueController;
 
   /// Initialization and disposal methods.
 

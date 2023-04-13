@@ -180,7 +180,7 @@ class _HeaderMainScreenWidgetState extends State<HeaderMainScreenWidget>
                       multiselect: false,
                       initialized: _model.choiceChipsValue != null,
                       alignment: WrapAlignment.start,
-                      controller: _model.choiceChipsController ??=
+                      controller: _model.choiceChipsValueController ??=
                           FormFieldController<List<String>>(
                         ['All'],
                       ),
