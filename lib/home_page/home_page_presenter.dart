@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import '../index.dart';
 import 'home_page_widget.dart';
 
 import '../item_info/item_info_widget.dart';
@@ -45,7 +46,7 @@ class _HomePagePresenterState extends State<HomePagePresenter> {
                   ? ItemInfoWidget(
                       userId: userId,
                     )
-                  : Placeholder()),
+                  : EmptyPersonalInfoScreenWidget()),
         ],
       );
     });
