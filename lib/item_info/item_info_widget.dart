@@ -766,37 +766,42 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                             ),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 10.0, 0.0),
-                                            child: Text(
-                                              (DummyapiGroup.getUserPostsCall
-                                                      .datatext(
-                                                (_model.userPosts?.jsonBody ??
-                                                    ''),
-                                              ) as List)
-                                                  .map<String>(
-                                                      (s) => s.toString())
-                                                  .toList()
-                                                  .length
-                                                  .toString(),
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .lineColor,
-                                                    fontSize: 20.0,
-                                                    fontWeight: FontWeight.w800,
-                                                  ),
+                                        if ((_model.userPosts?.succeeded ??
+                                                true) ==
+                                            true)
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 10.0, 0.0),
+                                              child: Text(
+                                                (DummyapiGroup.getUserPostsCall
+                                                        .datatext(
+                                                  (_model.userPosts?.jsonBody ??
+                                                      ''),
+                                                ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()
+                                                    .length
+                                                    .toString(),
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .lineColor,
+                                                      fontSize: 20.0,
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                    ),
+                                              ),
                                             ),
                                           ),
-                                        ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
