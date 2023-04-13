@@ -309,6 +309,13 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
     super.initState();
     _model = createModel(context, () => ItemInfoModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.userPosts = await DummyapiGroup.getUserPostsCall.call(
+        userId: widget.userId,
+      );
+    });
+
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -743,7 +750,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Text(
-                                              '\$ 235',
+                                              'Posts:',
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -753,7 +760,38 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .lineColor,
-                                                    fontSize: 25.0,
+                                                    fontSize: 20.0,
+                                                    fontWeight: FontWeight.w800,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: Text(
+                                              (DummyapiGroup.getUserPostsCall
+                                                      .datatext(
+                                                (_model.userPosts?.jsonBody ??
+                                                    ''),
+                                              ) as List)
+                                                  .map<String>(
+                                                      (s) => s.toString())
+                                                  .toList()
+                                                  .length
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Open Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .lineColor,
+                                                    fontSize: 20.0,
                                                     fontWeight: FontWeight.w800,
                                                   ),
                                             ),
