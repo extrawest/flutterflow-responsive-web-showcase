@@ -96,6 +96,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PostsScreenWidget(
                 userId: params.getParam('userId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'EmptyPersonalInfoScreen',
+              path: 'emptyPersonalInfoScreen',
+              builder: (context, params) => EmptyPersonalInfoScreenWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
