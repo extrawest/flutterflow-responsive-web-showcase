@@ -89,6 +89,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 isUserFetching:
                     params.getParam('isUserFetching', ParamType.bool),
               ),
+            ),
+            FFRoute(
+              name: 'PostsScreen',
+              path: 'postsScreen',
+              builder: (context, params) => PostsScreenWidget(
+                userId: params.getParam('userId', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
