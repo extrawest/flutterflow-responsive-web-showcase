@@ -346,6 +346,83 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                       ],
                                     ),
                                   ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final tags =
+                                            DummyapiGroup.getUserPostsCall
+                                                    .datatags(
+                                                      postsScreenGetUserPostsResponse
+                                                          .jsonBody,
+                                                    )
+                                                    ?.map((e) => e)
+                                                    .toList()
+                                                    ?.toList() ??
+                                                [];
+                                        return Wrap(
+                                          spacing: 4.0,
+                                          runSpacing: 4.0,
+                                          alignment: WrapAlignment.start,
+                                          crossAxisAlignment:
+                                              WrapCrossAlignment.start,
+                                          direction: Axis.horizontal,
+                                          runAlignment: WrapAlignment.start,
+                                          verticalDirection:
+                                              VerticalDirection.down,
+                                          clipBehavior: Clip.none,
+                                          children: List.generate(tags.length,
+                                              (tagsIndex) {
+                                            final tagsItem = tags[tagsIndex];
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(0.0),
+                                                  bottomRight:
+                                                      Radius.circular(300.0),
+                                                  topLeft:
+                                                      Radius.circular(300.0),
+                                                  topRight:
+                                                      Radius.circular(0.0),
+                                                ),
+                                                shape: BoxShape.rectangle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondary,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        10.0, 0.0, 10.0, 0.0),
+                                                child: Text(
+                                                  getJsonField(
+                                                    tagsItem,
+                                                    r'''$''',
+                                                  ).toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                      ),
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
