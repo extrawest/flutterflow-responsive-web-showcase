@@ -58,9 +58,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'FAVORITE',
               path: 'favorite',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'FAVORITE')
-                  : FavoriteWidget(),
+              builder: (context, params) => FavoriteWidget(),
             ),
             FFRoute(
               name: 'PROFILE',
