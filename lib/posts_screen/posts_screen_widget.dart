@@ -232,7 +232,8 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                       width: MediaQuery.of(context).size.width *
                                           0.96,
                                       decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
                                         boxShadow: [
                                           BoxShadow(
                                             blurRadius: 6.0,
