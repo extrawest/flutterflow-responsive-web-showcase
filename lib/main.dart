@@ -109,7 +109,6 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'FAVORITE': FavoriteWidget(),
       'PROFILE': ProfileWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -134,14 +133,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 27.0,
             ),
             label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite_sharp,
-              size: 24.0,
-            ),
-            label: 'Favorite',
             tooltip: '',
           ),
           BottomNavigationBarItem(
