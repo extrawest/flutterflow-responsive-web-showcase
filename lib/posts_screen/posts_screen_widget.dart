@@ -360,6 +360,9 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                                     .toList()
                                                     ?.toList() ??
                                                 [];
+                                        final tagsItem = tags[userPostsIndex]
+                                            .map((e) => e)
+                                            .toList();
                                         return Wrap(
                                           spacing: 4.0,
                                           runSpacing: 4.0,
@@ -371,54 +374,54 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                           verticalDirection:
                                               VerticalDirection.down,
                                           clipBehavior: Clip.none,
-                                          children: List.generate(tags.length,
-                                              (tagsIndex) {
-                                            final tagsItem = tags[tagsIndex];
-                                            return Container(
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(300.0),
-                                                  topLeft:
-                                                      Radius.circular(300.0),
-                                                  topRight:
-                                                      Radius.circular(0.0),
-                                                ),
-                                                shape: BoxShape.rectangle,
-                                                border: Border.all(
+                                          children: [
+                                            for (final ttt in tagsItem)
+                                              Container(
+                                                decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondary,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(0.0),
+                                                    bottomRight:
+                                                        Radius.circular(300.0),
+                                                    topLeft:
+                                                        Radius.circular(300.0),
+                                                    topRight:
+                                                        Radius.circular(0.0),
+                                                  ),
+                                                  shape: BoxShape.rectangle,
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 10.0, 0.0),
+                                                  child: Text(
+                                                    getJsonField(
+                                                      ttt,
+                                                      r'''$''',
+                                                    ).toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        10.0, 0.0, 10.0, 0.0),
-                                                child: Text(
-                                                  getJsonField(
-                                                    tagsItem,
-                                                    r'''$''',
-                                                  ).toString(),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                      ),
-                                                ),
-                                              ),
-                                            );
-                                          }),
+                                          ],
                                         );
                                       },
                                     ),
