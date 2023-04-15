@@ -254,7 +254,7 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                           )[userPostsIndex],
                                           width: 100.0,
                                           height: 300.0,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                     ),

@@ -430,7 +430,7 @@ class _ItemInfoWidgetState extends State<ItemInfoWidget>
                                   ),
                                   width: 100.0,
                                   height: 300.0,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ],
