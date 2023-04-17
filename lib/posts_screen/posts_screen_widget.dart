@@ -1,3 +1,5 @@
+import 'package:responsive_builder/responsive_builder.dart';
+
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -43,6 +45,9 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    // bool isShowAppBar = false;
+
     return FutureBuilder<ApiCallResponse>(
       future: _model.postsList(
         requestFn: () => DummyapiGroup.getUserPostsCall.call(
@@ -81,7 +86,14 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                 size: 30.0,
               ),
               onPressed: () async {
-                context.pop();
+                switch (deviceType) {
+                  case DeviceScreenType.mobile:
+                    context.pop();
+                    break;
+                  default:
+                    context.goNamed('HomePage');
+                    break;
+                }
               },
             ),
             title: Text(
