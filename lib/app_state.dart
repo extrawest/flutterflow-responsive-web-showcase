@@ -128,6 +128,12 @@ class FFAppState extends ChangeNotifier {
     _searchonof = _value;
   }
 
+  String _searchString = '';
+  String get searchString => _searchString;
+  set searchString(String _value) {
+    _searchString = _value;
+  }
+
   final _usersManager = FutureRequestManager<ApiCallResponse>();
   Future<ApiCallResponse> users({
     String? uniqueQueryKey,
