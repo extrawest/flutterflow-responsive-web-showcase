@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -61,7 +62,7 @@ class _HeaderMainScreenWidgetState extends State<HeaderMainScreenWidget>
     super.initState();
     _model = createModel(context, () => HeaderMainScreenModel());
 
-    _model.searchController ??= TextEditingController();
+    _model.searchFieldController ??= TextEditingController();
   }
 
   @override
@@ -87,7 +88,15 @@ class _HeaderMainScreenWidgetState extends State<HeaderMainScreenWidget>
               children: [
                 Expanded(
                   child: TextFormField(
-                    controller: _model.searchController,
+                    controller: _model.searchFieldController,
+                    onChanged: (_) => EasyDebounce.debounce(
+                      '_model.searchFieldController',
+                      Duration(milliseconds: 2000),
+                      () async {
+                        FFAppState().searchString =
+                            _model.searchFieldController.text;
+                      },
+                    ),
                     obscureText: false,
                     decoration: InputDecoration(
                       hintText: 'Search',
@@ -128,8 +137,8 @@ class _HeaderMainScreenWidgetState extends State<HeaderMainScreenWidget>
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
-                    validator:
-                        _model.searchControllerValidator.asValidator(context),
+                    validator: _model.searchFieldControllerValidator
+                        .asValidator(context),
                   ),
                 ),
               ],
