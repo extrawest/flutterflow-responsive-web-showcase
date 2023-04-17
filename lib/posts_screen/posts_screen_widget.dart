@@ -46,7 +46,6 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
     context.watch<FFAppState>();
 
     var deviceType = getDeviceType(MediaQuery.of(context).size);
-    // bool isShowAppBar = false;
 
     return FutureBuilder<ApiCallResponse>(
       future: _model.postsList(
@@ -127,7 +126,6 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children:
                             List.generate(userPosts.length, (userPostsIndex) {
-                          final userPostsItem = userPosts[userPostsIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
