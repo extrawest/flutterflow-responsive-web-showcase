@@ -58,18 +58,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
         ),
       ],
     ),
-    'iconOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1190.ms,
-          begin: Offset(0.0, -34.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
   };
 
   @override
@@ -92,61 +80,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      drawer: Container(
-        width: MediaQuery.of(context).size.width * 0.7,
-        child: Drawer(
-          elevation: 25.0,
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15.0, 20.0, 15.0, 15.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 70.0,
-                      height: 70.0,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.network(
-                        'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Andrea Davis',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 16.0,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
       body: NestedScrollView(
         headerSliverBuilder: (context, _) => [
           SliverAppBar(
@@ -155,16 +88,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
             snap: true,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
-            leading: InkWell(
-              onTap: () async {
-                scaffoldKey.currentState!.openDrawer();
-              },
-              child: Icon(
-                FFIcons.kmenu2,
-                color: FlutterFlowTheme.of(context).lineColor,
-                size: 30.0,
-              ),
-            ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
             actions: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
@@ -212,8 +135,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
-                        child: Image.network(
-                          'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
+                        child: Image.asset(
+                          'assets/images/unnamed.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -235,11 +158,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      wrapWithModel(
-                        model: _model.headerMainScreenModel,
-                        updateCallback: () => setState(() {}),
-                        child: HeaderMainScreenWidget(),
-                      ),
+                      if (true == false)
+                        wrapWithModel(
+                          model: _model.headerMainScreenModel,
+                          updateCallback: () => setState(() {}),
+                          child: HeaderMainScreenWidget(),
+                        ),
                       wrapWithModel(
                         model: _model.userListRowModel,
                         updateCallback: () => setState(() {}),
