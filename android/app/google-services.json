@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "919668768391",
+    "project_id": "flutterwebtraining3",
+    "storage_bucket": "flutterwebtraining3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919668768391:android:5e8892edba008b09428222",
+        "android_client_info": {
+          "package_name": "com.extrawest.flutterwebtraining3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919668768391-3814ttugpurig7l2fb9uvtl80u95pa5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.extrawest.flutterwebtraining3",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "919668768391-htcigaivmtqk8dlhn0hvil2opfftr515.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcZH_oZfrX8tSpeYpkgLTROWEAFiZBq8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919668768391-htcigaivmtqk8dlhn0hvil2opfftr515.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "919668768391-je6ct5urpe9il5sivc7dsqonvhi8408d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.extrawest.flutterwebtraining3"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
