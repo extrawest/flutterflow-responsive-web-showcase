@@ -55,18 +55,6 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
         ),
       ],
     ),
-    'iconOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1190.ms,
-          begin: Offset(0.0, -34.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
   };
 
   @override
@@ -152,16 +140,6 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
             snap: true,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
-            leading: InkWell(
-              onTap: () async {
-                scaffoldKey.currentState!.openDrawer();
-              },
-              child: Icon(
-                FFIcons.kmenu2,
-                color: FlutterFlowTheme.of(context).lineColor,
-                size: 30.0,
-              ),
-            ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
             actions: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
