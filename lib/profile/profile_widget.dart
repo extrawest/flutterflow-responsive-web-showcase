@@ -348,7 +348,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Edit Profile',
-                            style: FlutterFlowTheme.of(context).bodySmall,
+                            style: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
                           ),
                         ),
                       ],

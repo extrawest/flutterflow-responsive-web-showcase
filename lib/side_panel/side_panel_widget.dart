@@ -199,8 +199,8 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
-                        child: Image.network(
-                          'https://thumbs.dreamstime.com/b/barbershop-salon-barber-hairdresser-man-mature-good-looking-model-copy-space-hair-styling-reference-beauty-grizzle-deal-208541615.jpg',
+                        child: Image.asset(
+                          'assets/images/unnamed.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -222,11 +222,12 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      wrapWithModel(
-                        model: _model.headerMainScreenModel,
-                        updateCallback: () => setState(() {}),
-                        child: HeaderMainScreenWidget(),
-                      ),
+                      if (true == false)
+                        wrapWithModel(
+                          model: _model.headerMainScreenModel,
+                          updateCallback: () => setState(() {}),
+                          child: HeaderMainScreenWidget(),
+                        ),
                       wrapWithModel(
                         model: _model.userListColumnModel,
                         updateCallback: () => setState(() {}),
