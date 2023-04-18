@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -246,18 +247,26 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                       ),
                                       child: Stack(
                                         children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              DummyapiGroup.getUserPostsCall
-                                                  .dataimage(
-                                                postsScreenGetUserPostsResponse
-                                                    .jsonBody,
-                                              )[userPostsIndex],
-                                              width: double.infinity,
-                                              height: 300.0,
-                                              fit: BoxFit.cover,
+                                          ClipRect(
+                                            child: ImageFiltered(
+                                              imageFilter: ImageFilter.blur(
+                                                sigmaX: 3.0,
+                                                sigmaY: 3.0,
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  DummyapiGroup.getUserPostsCall
+                                                      .dataimage(
+                                                    postsScreenGetUserPostsResponse
+                                                        .jsonBody,
+                                                  )[userPostsIndex],
+                                                  width: double.infinity,
+                                                  height: 300.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           ClipRRect(
