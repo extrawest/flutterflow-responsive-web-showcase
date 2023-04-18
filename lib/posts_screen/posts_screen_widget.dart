@@ -260,8 +260,8 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                           ClipRect(
                                             child: ImageFiltered(
                                               imageFilter: ImageFilter.blur(
-                                                sigmaX: 3.0,
-                                                sigmaY: 3.0,
+                                                sigmaX: 10.0,
+                                                sigmaY: 10.0,
                                               ),
                                               child: ClipRRect(
                                                 borderRadius:
