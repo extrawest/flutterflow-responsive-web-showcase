@@ -244,19 +244,37 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          DummyapiGroup.getUserPostsCall
-                                              .dataimage(
-                                            postsScreenGetUserPostsResponse
-                                                .jsonBody,
-                                          )[userPostsIndex],
-                                          width: 100.0,
-                                          height: 300.0,
-                                          fit: BoxFit.contain,
-                                        ),
+                                      child: Stack(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              DummyapiGroup.getUserPostsCall
+                                                  .dataimage(
+                                                postsScreenGetUserPostsResponse
+                                                    .jsonBody,
+                                              )[userPostsIndex],
+                                              width: double.infinity,
+                                              height: 300.0,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              DummyapiGroup.getUserPostsCall
+                                                  .dataimage(
+                                                postsScreenGetUserPostsResponse
+                                                    .jsonBody,
+                                              )[userPostsIndex],
+                                              width: double.infinity,
+                                              height: 300.0,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
