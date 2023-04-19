@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -124,20 +125,41 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           ),
                         ),
                       ),
-                    InkWell(
-                      onTap: () async {
-                        context.pushNamed('PROFILE');
-                      },
-                      child: Container(
-                        width: 40.0,
-                        height: 40.0,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
+                    Container(
+                      width: 40.0,
+                      height: 40.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 4.0,
+                            color: Color(0x33000000),
+                            offset: Offset(2.0, 2.0),
+                            spreadRadius: 2.0,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(40.0),
+                        border: Border.all(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          width: 1.0,
                         ),
-                        child: Image.asset(
-                          'assets/images/unnamed.png',
-                          fit: BoxFit.cover,
+                      ),
+                      child: InkWell(
+                        onTap: () async {
+                          context.pushNamed('PROFILE');
+                        },
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/images/Flutter.svg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
