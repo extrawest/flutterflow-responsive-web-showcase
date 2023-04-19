@@ -1,13 +1,10 @@
+import '/components/app_bar_buttons_widget.dart';
 import '/components/header_main_screen_widget.dart';
 import '/components/user_list_column_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -36,26 +33,10 @@ class SidePanelWidget extends StatefulWidget {
   _SidePanelWidgetState createState() => _SidePanelWidgetState();
 }
 
-class _SidePanelWidgetState extends State<SidePanelWidget>
-    with TickerProviderStateMixin {
+class _SidePanelWidgetState extends State<SidePanelWidget> {
   late SidePanelModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = {
-    'rowOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1190.ms,
-          begin: Offset(0.0, -34.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
@@ -141,60 +122,10 @@ class _SidePanelWidgetState extends State<SidePanelWidget>
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             actions: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (Theme.of(context).brightness == Brightness.light)
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.dark);
-                          },
-                          child: FaIcon(
-                            FontAwesomeIcons.moon,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            size: 22.0,
-                          ),
-                        ),
-                      ),
-                    if (Theme.of(context).brightness == Brightness.dark)
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.light);
-                          },
-                          child: FaIcon(
-                            FontAwesomeIcons.solidMoon,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            size: 22.0,
-                          ),
-                        ),
-                      ),
-                    InkWell(
-                      onTap: () async {
-                        context.pushNamed('PROFILE');
-                      },
-                      child: Container(
-                        width: 40.0,
-                        height: 40.0,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.asset(
-                          'assets/images/unnamed.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
-                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation']!),
+              wrapWithModel(
+                model: _model.appBarButtonsModel,
+                updateCallback: () => setState(() {}),
+                child: AppBarButtonsWidget(),
               ),
             ],
             centerTitle: false,

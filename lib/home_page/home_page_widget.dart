@@ -1,3 +1,4 @@
+import '/components/app_bar_buttons_widget.dart';
 import '/components/header_main_screen_widget.dart';
 import '/components/user_list_column_widget.dart';
 import '/components/user_list_row_widget.dart';
@@ -8,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -47,18 +46,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
         ),
       ],
     ),
-    'rowOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1190.ms,
-          begin: Offset(0.0, -34.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
   };
 
   @override
@@ -90,81 +77,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             actions: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (Theme.of(context).brightness == Brightness.light)
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.dark);
-                          },
-                          child: FaIcon(
-                            FontAwesomeIcons.moon,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            size: 22.0,
-                          ),
-                        ),
-                      ),
-                    if (Theme.of(context).brightness == Brightness.dark)
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.light);
-                          },
-                          child: FaIcon(
-                            FontAwesomeIcons.solidMoon,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            size: 22.0,
-                          ),
-                        ),
-                      ),
-                    Container(
-                      width: 40.0,
-                      height: 40.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x33000000),
-                            offset: Offset(2.0, 2.0),
-                            spreadRadius: 2.0,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(40.0),
-                        border: Border.all(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          width: 1.0,
-                        ),
-                      ),
-                      child: InkWell(
-                        onTap: () async {
-                          context.pushNamed('PROFILE');
-                        },
-                        child: Container(
-                          width: 40.0,
-                          height: 40.0,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: SvgPicture.asset(
-                            'assets/images/Flutter.svg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation']!),
+              wrapWithModel(
+                model: _model.appBarButtonsModel,
+                updateCallback: () => setState(() {}),
+                child: AppBarButtonsWidget(),
               ),
             ],
             centerTitle: false,

@@ -1,3 +1,4 @@
+import '/components/app_bar_buttons_widget.dart';
 import '/components/header_main_screen_widget.dart';
 import '/components/user_list_column_widget.dart';
 import '/components/user_list_row_widget.dart';
@@ -8,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +21,8 @@ class HomePageModel extends FlutterFlowModel {
   late UserListRowModel userListRowModel;
   // Model for UserListColumn component.
   late UserListColumnModel userListColumnModel;
+  // Model for AppBarButtons component.
+  late AppBarButtonsModel appBarButtonsModel;
 
   /// Initialization and disposal methods.
 
@@ -29,12 +30,14 @@ class HomePageModel extends FlutterFlowModel {
     headerMainScreenModel = createModel(context, () => HeaderMainScreenModel());
     userListRowModel = createModel(context, () => UserListRowModel());
     userListColumnModel = createModel(context, () => UserListColumnModel());
+    appBarButtonsModel = createModel(context, () => AppBarButtonsModel());
   }
 
   void dispose() {
     headerMainScreenModel.dispose();
     userListRowModel.dispose();
     userListColumnModel.dispose();
+    appBarButtonsModel.dispose();
   }
 
   /// Additional helper methods are added here.
