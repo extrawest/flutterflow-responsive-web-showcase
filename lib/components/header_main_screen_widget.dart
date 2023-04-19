@@ -93,8 +93,10 @@ class _HeaderMainScreenWidgetState extends State<HeaderMainScreenWidget>
                       '_model.searchFieldController',
                       Duration(milliseconds: 2000),
                       () async {
-                        FFAppState().searchString =
-                            _model.searchFieldController.text;
+                        _model.updatePage(() {
+                          FFAppState().searchString =
+                              _model.searchFieldController.text;
+                        });
                       },
                     ),
                     obscureText: false,
