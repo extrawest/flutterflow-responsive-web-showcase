@@ -34,18 +34,22 @@ class _HomePagePresenterState extends State<HomePagePresenter> {
       return Row(
         children: [
           Expanded(
-            flex: 1,
+            flex: 3,
             child: SidePanelWidget(
-              onSelect: (_userId) => setState(() => userId = _userId),
+              onSelect: (_userId) {
+                setState(() => userId = '');
+                Future.delayed(Duration(milliseconds: 10),
+                    () => setState(() => userId = _userId));
+              },
               isUserFetching: widget.isUserFetching,
             ),
           ),
           Expanded(
-              flex: 2,
+              flex: 4,
               child: userId != null
-                  ? ItemInfoWidget(
-                      userId: userId,
-                    )
+                  ? userId! != ''
+                      ? ItemInfoWidget(userId: userId)
+                      : LoadingScreenWidget()
                   : EmptyPersonalInfoScreenWidget()),
         ],
       );

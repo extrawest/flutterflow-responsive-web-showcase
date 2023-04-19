@@ -82,6 +82,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'EmptyPersonalInfoScreen',
               path: 'emptyPersonalInfoScreen',
               builder: (context, params) => EmptyPersonalInfoScreenWidget(),
+            ),
+            FFRoute(
+              name: 'LoadingScreen',
+              path: 'loadingScreen',
+              builder: (context, params) => LoadingScreenWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

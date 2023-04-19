@@ -1,6 +1,7 @@
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'posts_screen_model.dart';
 export 'posts_screen_model.dart';
@@ -256,6 +258,8 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Stack(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
                                         children: [
                                           ClipRect(
                                             child: ImageFiltered(
@@ -263,6 +267,74 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                                 sigmaX: 10.0,
                                                 sigmaY: 10.0,
                                               ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        4.0, 4.0, 4.0, 4.0),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 300.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: Image.network(
+                                                        DummyapiGroup
+                                                            .getUserPostsCall
+                                                            .dataimage(
+                                                          postsScreenGetUserPostsResponse
+                                                              .jsonBody,
+                                                        )[userPostsIndex],
+                                                      ).image,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    shape: BoxShape.rectangle,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  child:
+                                                      FlutterFlowExpandedImageView(
+                                                    image: Image.network(
+                                                      DummyapiGroup
+                                                          .getUserPostsCall
+                                                          .dataimage(
+                                                        postsScreenGetUserPostsResponse
+                                                            .jsonBody,
+                                                      )[userPostsIndex],
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                    allowRotation: false,
+                                                    tag: DummyapiGroup
+                                                        .getUserPostsCall
+                                                        .dataimage(
+                                                      postsScreenGetUserPostsResponse
+                                                          .jsonBody,
+                                                    )[userPostsIndex],
+                                                    useHeroAnimation: true,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Hero(
+                                              tag: DummyapiGroup
+                                                  .getUserPostsCall
+                                                  .dataimage(
+                                                postsScreenGetUserPostsResponse
+                                                    .jsonBody,
+                                              )[userPostsIndex],
+                                              transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
@@ -274,23 +346,9 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                                   )[userPostsIndex],
                                                   width: double.infinity,
                                                   height: 300.0,
-                                                  fit: BoxFit.cover,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              DummyapiGroup.getUserPostsCall
-                                                  .dataimage(
-                                                postsScreenGetUserPostsResponse
-                                                    .jsonBody,
-                                              )[userPostsIndex],
-                                              width: double.infinity,
-                                              height: 300.0,
-                                              fit: BoxFit.contain,
                                             ),
                                           ),
                                         ],

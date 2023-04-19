@@ -98,7 +98,7 @@ class _UserListRowWidgetState extends State<UserListRowWidget>
                     return Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () async {
                           context.pushNamed(
                             'ITEM_INFO',

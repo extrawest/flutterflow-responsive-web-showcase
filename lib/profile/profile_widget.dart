@@ -71,7 +71,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(60.0),
                     child: Image.asset(
-                      'assets/images/unnamed.png',
+                      'assets/images/Flutter.png',
                       width: 100.0,
                       height: 100.0,
                       fit: BoxFit.cover,
@@ -82,7 +82,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                 child: Text(
-                  'Ruslan Volkhov',
+                  'Lorem Ipsum',
                   style: FlutterFlowTheme.of(context).headlineSmall,
                 ),
               ),
@@ -104,61 +104,130 @@ class _ProfileWidgetState extends State<ProfileWidget>
                 color: FlutterFlowTheme.of(context).lineColor,
               ),
               Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).grayIcon,
+                    borderRadius: BorderRadius.circular(12.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).lineColor,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 0.0, 0.0),
+                          child: Icon(
+                            Icons.account_circle_outlined,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Edit Profile',
+                            style: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if (Theme.of(context).brightness == Brightness.light)
-                      InkWell(
-                        onTap: () async {
-                          setDarkModeSetting(context, ThemeMode.dark);
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).lineColor,
-                              width: 2.0,
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      child: Text(
+                        'Settings',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Open Sans',
+                              color: FlutterFlowTheme.of(context).secondary,
                             ),
+                      ),
+                    ),
+                    Divider(
+                      height: 44.0,
+                      thickness: 1.0,
+                      indent: 24.0,
+                      endIndent: 24.0,
+                      color: FlutterFlowTheme.of(context).lineColor,
+                    ),
+                    if (Theme.of(context).brightness == Brightness.light)
+                      Container(
+                        width: MediaQuery.of(context).size.width * 1.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).lineColor,
+                            width: 2.0,
                           ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 8.0, 12.0, 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 8.0, 12.0, 8.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4.0, 0.0, 0.0, 0.0),
+                                child: Icon(
+                                  Icons.nights_stay_outlined,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 0.0, 0.0, 0.0),
-                                  child: Icon(
-                                    Icons.nights_stay_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                      12.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Switch to Dark Mode',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodySmall,
                                   ),
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Switch to Dark Mode',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall,
-                                    ),
-                                  ),
-                                ),
-                                Container(
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  setDarkModeSetting(context, ThemeMode.dark);
+                                },
+                                child: Container(
                                   width: 80.0,
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     borderRadius: BorderRadius.circular(20.0),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).accent3,
+                                      width: 1.0,
+                                    ),
                                   ),
                                   child: Stack(
                                     alignment: AlignmentDirectional(0.0, 0.0),
@@ -172,8 +241,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: Icon(
                                             Icons.nights_stay,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: Color(0xFF95A1AC),
                                             size: 20.0,
                                           ),
                                         ),
@@ -198,68 +266,74 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 BorderRadius.circular(30.0),
                                             shape: BoxShape.rectangle,
                                           ),
+                                          child: Icon(
+                                            Icons.wb_sunny_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     if (Theme.of(context).brightness == Brightness.dark)
-                      InkWell(
-                        onTap: () async {
-                          setDarkModeSetting(context, ThemeMode.light);
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 1.0,
-                                color: Color(0xFF1A1F24),
-                                offset: Offset(0.0, 0.0),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).lineColor,
-                              width: 2.0,
-                            ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 1.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 1.0,
+                              color: Color(0xFF1A1F24),
+                              offset: Offset(0.0, 0.0),
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).lineColor,
+                            width: 2.0,
                           ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 8.0, 12.0, 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 8.0, 12.0, 8.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4.0, 0.0, 0.0, 0.0),
+                                child: Icon(
+                                  Icons.wb_sunny_outlined,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 0.0, 0.0, 0.0),
-                                  child: Icon(
-                                    Icons.wb_sunny_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                      12.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Switch to Light Mode',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodySmall,
                                   ),
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Switch to Light Mode',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall,
-                                    ),
-                                  ),
-                                ),
-                                Container(
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  setDarkModeSetting(context, ThemeMode.light);
+                                },
+                                child: Container(
                                   width: 80.0,
                                   height: 40.0,
                                   decoration: BoxDecoration(
@@ -303,63 +377,29 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 BorderRadius.circular(30.0),
                                             shape: BoxShape.rectangle,
                                           ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    2.0, 0.0, 0.0, 0.0),
+                                            child: Icon(
+                                              Icons.nights_stay,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              size: 20.0,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).grayIcon,
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).lineColor,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 12.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
-                          child: Icon(
-                            Icons.account_circle_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Edit Profile',
-                            style: FlutterFlowTheme.of(context)
-                                .bodySmall
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ),
               if (true == false)
