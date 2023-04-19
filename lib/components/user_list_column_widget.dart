@@ -180,19 +180,20 @@ class _UserListColumnWidgetState extends State<UserListColumnWidget>
                                             ),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 10.0, 10.0, 10.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
+                                                  .fromSTEB(2.0, 2.0, 2.0, 2.0),
+                                              child: Container(
+                                                width: 120.0,
+                                                height: 120.0,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
                                                 child: Image.network(
                                                   DummyapiGroup.getUsersCall
                                                       .pictures(
                                                     columnGetUsersResponse
                                                         .jsonBody,
                                                   )[usersColumnIndex],
-                                                  width: 100.0,
-                                                  height: 70.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),

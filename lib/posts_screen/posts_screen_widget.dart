@@ -246,6 +246,8 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Stack(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
                                         children: [
                                           ClipRect(
                                             child: ImageFiltered(
@@ -253,18 +255,33 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                                 sigmaX: 10.0,
                                                 sigmaY: 10.0,
                                               ),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  DummyapiGroup.getUserPostsCall
-                                                      .dataimage(
-                                                    postsScreenGetUserPostsResponse
-                                                        .jsonBody,
-                                                  )[userPostsIndex],
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        4.0, 4.0, 4.0, 4.0),
+                                                child: Container(
                                                   width: double.infinity,
                                                   height: 300.0,
-                                                  fit: BoxFit.cover,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: Image.network(
+                                                        DummyapiGroup
+                                                            .getUserPostsCall
+                                                            .dataimage(
+                                                          postsScreenGetUserPostsResponse
+                                                              .jsonBody,
+                                                        )[userPostsIndex],
+                                                      ).image,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    shape: BoxShape.rectangle,
+                                                  ),
                                                 ),
                                               ),
                                             ),
