@@ -68,7 +68,7 @@ class _AppBarButtonsWidgetState extends State<AppBarButtonsWidget>
           if (Theme.of(context).brightness == Brightness.light)
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () async {
                   setDarkModeSetting(context, ThemeMode.dark);
                 },
@@ -82,7 +82,7 @@ class _AppBarButtonsWidgetState extends State<AppBarButtonsWidget>
           if (Theme.of(context).brightness == Brightness.dark)
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () async {
                   setDarkModeSetting(context, ThemeMode.light);
                 },
@@ -112,7 +112,7 @@ class _AppBarButtonsWidgetState extends State<AppBarButtonsWidget>
                 width: 1.0,
               ),
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () async {
                 context.pushNamed('PROFILE');
               },
