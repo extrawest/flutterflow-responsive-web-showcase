@@ -2,11 +2,11 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'home_page/home_page_presenter.dart';
 import 'index.dart';
 
@@ -17,6 +17,10 @@ void main() async {
   await FlutterFlowTheme.initialize();
 
   final appState = FFAppState(); // Initialize FFAppState
+
+  ResponsiveSizingConfig.instance.setCustomBreakpoints(
+    ScreenBreakpoints(desktop: 850, tablet: 700, watch: 200),
+  );
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -59,7 +63,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'flutterWebTraining3',
+      title: 'FlutterFlow responsive WEB showcase',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
       ],
