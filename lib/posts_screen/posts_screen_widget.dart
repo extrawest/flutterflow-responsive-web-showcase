@@ -1,6 +1,7 @@
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'posts_screen_model.dart';
 export 'posts_screen_model.dart';
@@ -296,18 +298,57 @@ class _PostsScreenWidgetState extends State<PostsScreenWidget> {
                                               ),
                                             ),
                                           ),
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              DummyapiGroup.getUserPostsCall
+                                          InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  child:
+                                                      FlutterFlowExpandedImageView(
+                                                    image: Image.network(
+                                                      DummyapiGroup
+                                                          .getUserPostsCall
+                                                          .dataimage(
+                                                        postsScreenGetUserPostsResponse
+                                                            .jsonBody,
+                                                      )[userPostsIndex],
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                    allowRotation: false,
+                                                    tag: DummyapiGroup
+                                                        .getUserPostsCall
+                                                        .dataimage(
+                                                      postsScreenGetUserPostsResponse
+                                                          .jsonBody,
+                                                    )[userPostsIndex],
+                                                    useHeroAnimation: true,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Hero(
+                                              tag: DummyapiGroup
+                                                  .getUserPostsCall
                                                   .dataimage(
                                                 postsScreenGetUserPostsResponse
                                                     .jsonBody,
                                               )[userPostsIndex],
-                                              width: double.infinity,
-                                              height: 300.0,
-                                              fit: BoxFit.contain,
+                                              transitionOnUserGestures: true,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  DummyapiGroup.getUserPostsCall
+                                                      .dataimage(
+                                                    postsScreenGetUserPostsResponse
+                                                        .jsonBody,
+                                                  )[userPostsIndex],
+                                                  width: double.infinity,
+                                                  height: 300.0,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
