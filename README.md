@@ -1,4 +1,4 @@
-# FlutterFlow responsive WEB showcase
+# FlutterFlow Responsive Web Showcase
 
 [![Maintanence](https://img.shields.io/badge/Maintenance-yes-blue.svg)]()
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)]()
@@ -6,9 +6,10 @@
 ![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue)
 ![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
 [![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://volkhov-map.web.app)
+![FlutterFlow](https://img.shields.io/badge/FlutterFlow-6E61FA.svg?logo=flutter)
 
 ## Project info 
-- This project is an app that shows the possibility to work FlutterFlow with Rest API, master-detail screens collaboration, animation, and page transition.
+- This project is a FlutterFlow showcase app with the following features: Responsive Design, REST API, Master-Detail Flow, Animation, and Custom Page Transitions.
 - The app runs on Android, iOS and Web.
 - The app is built using Flutter stable and latest Dart version.
 - The app is built using the FlutterFlow
