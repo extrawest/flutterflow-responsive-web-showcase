@@ -26,7 +26,7 @@
 ## How to run the app
 - **Clone the project.**
 ```shell
-git clone https://github.com/ruslan-volkhov-ew/flutter_web_training.git
+git clone https://github.com/extrawest/flutterflow-responsive-web-showcase.git
 ```
 - **Open the project.**
 ```shell
