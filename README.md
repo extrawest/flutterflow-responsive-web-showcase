@@ -19,8 +19,7 @@
 
 
 
-[screencast-github.com-2023.04.20-12_19_01.webm](https://user-images.githubusercontent.com/129328468/233325457-e31c1092-cbf5-4db6-a169-80eede8fbd98.webm)
-
+[Video demonstration:](https://github.com/extrawest/flutterflow-responsive-web-showcase/assets/129328468/48fcc002-912e-425a-8cb5-822672344e4b)
 
 
 ## How to run the app
