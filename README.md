@@ -18,8 +18,7 @@
 [FlutterFlow responsive WEB showcase](https://main--ornate-licorice-ac07bd.netlify.app/)
 
 
-
-[screencast-github.com-2023.04.20-12_19_01.webm](https://user-images.githubusercontent.com/129328468/233325457-e31c1092-cbf5-4db6-a169-80eede8fbd98.webm)
+https://github.com/extrawest/flutterflow-responsive-web-showcase/assets/129328468/cf64d727-2dae-4bdf-81a3-2d77aacd1c9f
 
 
 
